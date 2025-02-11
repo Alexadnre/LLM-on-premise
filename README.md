@@ -26,7 +26,7 @@ Ce projet implémente un **système RAG (Retrieval-Augmented Generation)** en co
 ## 📂 Structure du projet  
 
 ```
-📦 mon_projet
+📦 Projet
 ├── 📂 data                # Documents sources
 ├── 📂 notebooks           # Tests et prototypes
 ├── 📂 src                 # Code source principal
@@ -73,7 +73,7 @@ streamlit run src/main.py
 ✅ **Base de données Azure** pour stocker les documents  
 ✅ **DeepSeek local** pour répondre aux questions avec contexte  
 ✅ **Préparation et split des documents** via **LangChain**  
-✅ **Vectorisation des documents** avec OpenAI / DeepSeek / GraphRAG  
+✅ **Vectorisation des documents** avec DeepSeek / GraphRAG  
 ✅ **Retrieval intelligent** pour trouver les passages pertinents  
 ✅ **Optimisation du modèle** en ajustant les paramètres  
 ✅ **Fonction de reward** pour améliorer la pertinence des réponses  
@@ -87,13 +87,4 @@ streamlit run src/main.py
 - [ ] Tester différentes stratégies de split  
 - [ ] Ajuster la retrieval function pour améliorer la précision  
 
-## 🤝 Contribution
-
-Les contributions sont les bienvenues ! Si vous souhaitez contribuer :  
-
-1. **Fork** le projet  
-2. **Créez une branche** pour votre fonctionnalité (`git checkout -b feature-nouvelle-fonction`)  
-3. **Committez** vos modifications (`git commit -m "Ajout d'une nouvelle fonctionnalité"`)  
-4. **Poussez** vers votre branche (`git push origin feature-nouvelle-fonction`)  
-5. **Ouvrez une Pull Request**  
 
