@@ -61,7 +61,7 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Installer and pull le modèle Deepseek with ollama
+### 3️⃣ Installer et pull le modèle Deepseek with ollama
 
 ```bash
 ollama run deepseek-r1:8b
