@@ -2,7 +2,26 @@
 
 Ce projet implémente un **système RAG (Retrieval-Augmented Generation)** en connectant **DeepSeek** à une base de données sur **Azure** et en utilisant **LangChain** pour le traitement des documents.
 
+---
+
+# Sommaire
+
+- [Objectifs du projet](#📌-objectifs-du-projet)
+- [Technologies utilisées](#🛠️-technologies-utilisées)
+- [Structure du projet](#📂-structure-du-projet)
+- [Installation et Setup](#🚀-installation-et-setup)
+  - [Cloner le projet](#1️⃣-cloner-le-projet)
+  - [Créer un environnement virtuel et installer les dépendances](#2️⃣-créer-un-environnement-virtuel-et-installer-les-dépendances)
+  - [Installer et pull le modèle DeepSeek avec Ollama](#3️⃣-installer-et-pull-le-modèle-deepseek-with-ollama)
+  - [Lancer l'application](#4️⃣-lancer-lapplication)
+- [Fonctionnalités principales](#💡-fonctionnalités-principales)
+- [TODO](#📅-todo)
+- [Contribution](#🤝-contribution)
+
+---
 ## 📌 Objectifs du projet
+
+
 
 - Mettre en place une **interface utilisateur** avec **Streamlit**  
 - Déployer un **modèle DeepSeek local** pour répondre aux questions avec un contexte  
