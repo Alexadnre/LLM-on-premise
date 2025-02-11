@@ -61,7 +61,13 @@ source venv/bin/activate  # Windows: venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-### 3️⃣ Lancer l'application
+### 3️⃣ Installer and pull le modèle Deepseek with ollama
+
+```bash
+ollama run deepseek-r1:8b
+```
+
+### 4️⃣ Lancer l'application
 
 ```bash
 streamlit run src/main.py
