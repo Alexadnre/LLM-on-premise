@@ -46,7 +46,7 @@ Ce projet implémente un **système RAG (Retrieval-Augmented Generation)** en co
 
 ```
 📦 Projet
-├── 📂 data                # Documents sources
+├── 📂 static                # Documents base de connaissances
 ├── 📂 notebooks           # Tests et prototypes
 ├── 📂 src                 # Code source principal
 │   ├── main.py           # Lancement de l'application
