@@ -5,10 +5,10 @@
 from langchain_community.document_loaders import DirectoryLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
+import os
 
+data_path = os.path.join("static", "base_de_connaisance")
 
-
-data_path = "static/base_de_connaisance"
 
 def load_documents():
     loader = DirectoryLoader(data_path, glob="*.docx")
@@ -38,5 +38,3 @@ splitted_documents = split_text(documents)
 # Pouvoir traiter différent type de doc tel que un pdf ou autre 
 
 # faire un main qui renvoie le document splitté 
-
-
