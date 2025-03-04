@@ -1,3 +1,4 @@
+
 import os
 from langchain_community.document_loaders import DirectoryLoader, PDFPlumberLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -39,6 +40,7 @@ def load_documents():
 
     return documents
 
+
 def split_text(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1500,
@@ -79,3 +81,4 @@ def main():
 if __name__ == "__main__":
     splitted_docs = main()
     print(f"Nombre total de chunks : {len(splitted_docs)}")
+
