@@ -7,7 +7,7 @@ from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
 from langchain_ollama import ChatOllama
 
-DATA_PATH = "static/base_de_connaissance"
+DATA_PATH = "static2/"
 OUTPUT_PATH = "output"  
 
 def load_documents():
@@ -80,8 +80,8 @@ def embed_documents_with_llm(documents: list[Document]):
         model="deepseek-llm:latest",
         device="cpu",            # ou "gpu" si approprié
         trust_remote_code=True,
-        max_new_tokens=256,
-        temperature=0.0,         # température basse pour plus de déterminisme
+        max_new_tokens=64,
+        temperature=0.8,         # température basse pour plus de déterminisme
     )
     chunks = split_text(documents)
     embeddings = []
