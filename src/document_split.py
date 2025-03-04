@@ -2,13 +2,35 @@ import os
 from langchain_community.document_loaders import DirectoryLoader, PDFPlumberLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
+from docx2pdf import convert
 
 DATA_PATH = "static/base_de_connaissance"
 OUTPUT_PATH = "output"  
 
+def convert_docx_to_pdf():
+    docx_files = [f for f in os.listdir(DATA_PATH) if f.endswith(".docx")]
+    
+    for docx_file in docx_files:
+        docx_path = os.path.join(DATA_PATH, docx_file)
+        pdf_path = os.path.join(DATA_PATH, docx_file.replace(".docx", ".pdf"))
+        
+        if not os.path.exists(pdf_path):  
+            try:
+                pypandoc.convert_file(docx_path, 'pdf', outputfile=pdf_path)
+                print(f"Converti: {docx_file} -> {pdf_path}")
+            except Exception as e:
+                print(f"Erreur de conversion pour {docx_file}: {e}")
+
 def load_documents():
     documents = []
     
+    for filename in os.listdir(DATA_PATH):
+        if filename.endswith(".docx"):
+            input = os.path.join(DATA_PATH, filename)
+            output = os.path.join(DATA_PATH, f"{os.path.splitext(filename)[0]}.pdf")
+            convert(input, output)
+            
+
     docx_loader = DirectoryLoader(DATA_PATH, glob="*.docx")
     documents.extend(docx_loader.load())
 
