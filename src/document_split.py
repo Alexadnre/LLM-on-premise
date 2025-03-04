@@ -3,6 +3,8 @@ import os
 from langchain_community.document_loaders import DirectoryLoader, PDFPlumberLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
+from langchain_ollama import ChatOllama, OllamaEmbeddings
+
 
 DATA_PATH = "static/base_de_connaissance"
 OUTPUT_PATH = "output"  
@@ -30,6 +32,11 @@ def split_text(documents: list[Document]):
     print(f"Split {len(documents)} documents en {len(chunks)} chunks.")
     return chunks
 
+def embed(documents : list[Document]):
+    embed_model = OllamaEmbeddings(model="deepseek-embed")  
+    embeddings = embed_model.embed_documents(split_text(documents))
+    return embeddings
+
 def sanitize_filename(filename: str) -> str:
     """ Nettoie un nom de fichier en supprimant les espaces et caractères spéciaux. """
     filename = os.path.basename(filename)
@@ -53,6 +60,7 @@ def save_chunks(chunks: list[Document], output_path: str):
 def main():
     documents = load_documents()
     splitted_documents = split_text(documents)
+    embedded = embed(documents)
     save_chunks(splitted_documents, OUTPUT_PATH)
     return splitted_documents
 

@@ -1,0 +1,9 @@
+Procédure de Saisie des Jours d'Absence pour Événements Exceptionnels dans le Système SAF
+
+Lorsqu'un événement exceptionnel survient dans votre vie familiale, et que vous avez besoin de vous absenter du travail, il est essentiel de suivre une procédure spécifique pour enregistrer ces absences dans notre système SAF. Cette démarche vise à garantir une gestion efficace et transparente des jours d'absence tout en respectant les exigences administratives de notre entreprise. Pour saisir vos jours d'absence pour un événement exceptionnel, voici les étapes à suivre : 
+
+1. Catégorie d'Absence : Dans le système SAF, sélectionnez la catégorie d'absence nommée "Conventionnel". Cette catégorie est spécifiquement dédiée aux absences liées à des événements familiaux exceptionnels. 
+
+2. Précision de l'Événement : Lors de la saisie de votre absence, il est important de détailler la nature de l'événement dans le champ prévu pour les commentaires. Cette information est cruciale pour contextualiser votre demande et assurer une compréhension claire de la situation par l'équipe RH Paie. 
+
+3. Envoi du Justificatif : Un élément essentiel de cette procédure est l'envoi d'un justificatif. Ce document doit être transmis par courriel à l'adresse [AdminRH]( mailto:adminrh@micropole.com).

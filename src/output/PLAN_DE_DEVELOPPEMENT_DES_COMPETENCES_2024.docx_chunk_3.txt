@@ -1,0 +1,47 @@
+TOGAF® 9.2 Foundation avec certification - PLB
+
+21 heures en présentiel ou à distance
+
+
+
+TOGAF® 9.2 Certified - PLB
+
+14 heures en présentiel ou à distance
+
+Big Data, I.A. et IoT (Internet of Things)
+
+Formations Big Data et IA proposées par le Campus ATLAS  
+
+Le Big Data désigne des ensembles de données devenus si volumineux qu'ils ne peuvent pas être analysés par des outils informatiques classiques de gestion de base de données ou de l'information.
+
+L'intelligence artificielle, quant à elle, est un ensemble de théories et de techniques mises en œuvre en vue de réaliser des machines capables de simuler l'intelligence humaine.
+
+Ces deux technologies, bien que différentes (le Big Data désignant une entrée brute et l'IA une sortie résultante d'un traitement de données), restent complémentaires car elles s'alimentent l'une sur l'autre.
+
+Hadoop - HBase, mise en œuvre et administration - Orsys
+
+14 heures en présentiel ou à distance
+
+Etat de l'art du Big Data - Orsys
+
+14 heures en présentiel ou à distance
+
+Les Architectures et infrastructures pour le Big Data - Orsys
+
+21 heures en présentiel ou à distance
+
+Hadoop – Développement - Orsys
+
+21 heures en présentiel ou à distance
+
+Elasticsearch : indexation de contenu - Orsys
+
+14 heures en présentiel ou à distance
+
+Apache Kafka : centraliser les flux de données en temps réel - Orsys
+
+14 heures en présentiel ou à distance
+
+Big Data - Python pour l'analyse de données - Orsys
+
+21 heures en présentiel ou à distance

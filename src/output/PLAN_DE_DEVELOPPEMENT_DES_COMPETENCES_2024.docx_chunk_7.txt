@@ -1,0 +1,53 @@
+Réaliser des audits de conformité selon les référentiels d’accessibilité numérique (WCAG ou RGAA)
+
+Mettre en œuvre les principes clés d’ergonomie et d’UX Design (Expérience Utilisateur) dans la conception ou l’amélioration d’interfaces tactiles (tablettes et Smartphones), afin d’en optimiser l’attractivité et la navigation.
+
+Tester l'accessibilité de sites et d'applications – Orsys ou Softeam
+
+21 heures en présentiel ou à distance
+
+UX design et ergonomie des sites Web – Orsys ou Softeam
+
+21 heures en présentiel ou à distance
+
+.
+
+UX design et ergonomie pour tablettes et smartphones – Orsys ou Softeam
+
+21 heures en présentiel ou à distance
+
+
+
+Cybersécurité
+
+PLB Consultant - formation professionnelle en informatique et management
+
+Formation Bonnes pratiques de codage au service de la sécurité
+
+Durée : 2 jours – en présentiel (Paris et Régions) ou à distance
+
+REF : SPCS
+
+Formation Développement Sécurisé - Le codage au service de la sécurité | PLB
+
+M2I formation - Sécurité des applications Web
+
+21 heures en présentiel (Paris et Régions) ou à distance
+
+REF : SEC-SAW
+
+https://www.m2iformation.fr/formation-securite-des-applications-web/SEC-SAW/
+
+Global Knowledge - Les essentiels de la cybersécurité
+
+21 heures en présentiel ou à distance
+
+REF : CYBER
+
+https://www.globalknowledge.com/fr-fr/formation/security/cybersecurity_foundation_and_awareness/cyber
+
+ORSYS – Hacking éthique, pentesteur niveau 1 (BV-CEHP1)
+
+Certification Bureau Veritas
+
+35 heures en présentiel ou à distance

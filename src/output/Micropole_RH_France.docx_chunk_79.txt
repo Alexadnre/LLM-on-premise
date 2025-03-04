@@ -1,0 +1,19 @@
+Modification ou Suppression d'une Demande de Congés dans SAF
+
+ Si vous souhaitez modifier ou supprimer une demande de congés qui a déjà été acceptée par votre manager dans le système SAF, mais que vous ne pouvez pas le faire directement via le système, voici la procédure à suivre :
+
+1. Contactez l’équipe RH Paie :
+
+Envoyez un courriel à [AdminRH]( mailto:adminrh@micropole.com) pour leur expliquer votre situation. Indiquez clairement que vous souhaitez modifier ou supprimer une demande de congés déjà acceptée.
+
+2. Mettez votre Manager en Copie :
+
+Assurez-vous d'inclure votre manager en copie dans ce courriel. Cela garantit la transparence de votre demande et permet à votre manager d'être informé de la modification ou de la suppression demandée.
+
+3. Précisez les Détails de la Demande :
+
+Dans votre courriel, détaillez précisément quelle demande de congés vous souhaitez modifier ou supprimer. Si c'est une modification, spécifiez les nouvelles dates et le type de congés à déduire. Ce processus est nécessaire car une fois qu'une demande de congés a été approuvée par votre manager, elle ne peut plus être modifiée ou annulée directement par le salarié dans le système SAF. L'intervention de l’équipe RH Paie est donc requise pour effectuer ces changements. Assurez-vous de faire cette demande suffisamment à l'avance pour éviter tout désagrément lié à la planification de vos congés ou de l'organisation du travail.
+
+
+
+Gestion d'un Conflit de Demande de Congés dans SAF

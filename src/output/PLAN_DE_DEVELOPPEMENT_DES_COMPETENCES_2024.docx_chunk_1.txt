@@ -1,0 +1,51 @@
+Autrement dit, le plan de développement des compétences est un outil stratégique au service de l’entreprise.
+
+HARD SKILLS et METIER
+
+
+
+LES FORMATIONS PAR DOMAINES
+
+Management des systèmes d’information
+
+Blockchain - État de l’art et cas concrets – PLB
+
+14 heures en présentiel ou à distance
+
+Urbanisme du SI et architectures des systèmes - Sparks
+
+21 heures en présentiel ou à distance
+
+Formations ITIL du Campus ATLAS
+
+ITIL est un référentiel de bonnes pratiques liées à la gouvernance des systèmes d’information. La version n°4, publiée en février 2019, propose 6 formations 
+
+ITIL 4 - Les fondamentaux avec certification – Global Knowledge
+
+21 heures à distance
+
+ITIL 4 - Specialist CDS Create Deliver Support – Global Knowledge
+
+21 heures à distance
+
+ITIL 4 - Specialist DSV Drive Stakeholder Value – Global Knowledge
+
+21 heures à distance
+
+ITIL 4 - Specialist HVIT High Velocity IT – Global Knowledge
+
+21 heures à distance
+
+ITIL 4 - Strategist DPI Direct Plan Improve – Global Knowledge
+
+21 heures à distance
+
+ITIL 4 - Leader DITS Digital IT Strategy – Global Knowledge
+
+21 heures à distance
+
+Formations DeVops & intégration continue du Campus ATLAS
+
+DevOps traduit l’union des développeurs (dev) et des professionnels des opérations informatiques (ops) ; on note son omniprésence dans les DSI. Elle vise à améliorer la collaboration entre les différents processus et corps de métiers pour créer des produits plus performants en moins de temps.
+
+DevOps : démarche et outils – Global Knowledge
