@@ -1,9 +1,10 @@
-
 import os
+import numpy as np
+from numpy.linalg import norm
 from langchain_community.document_loaders import DirectoryLoader, PDFPlumberLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
-from langchain_ollama import ChatOllama, OllamaEmbeddings
+from langchain_ollama import OllamaEmbeddings
 
 
 DATA_PATH = "static/base_de_connaissance"
@@ -32,9 +33,12 @@ def split_text(documents: list[Document]):
     print(f"Split {len(documents)} documents en {len(chunks)} chunks.")
     return chunks
 
-def embed(documents : list[Document]):
-    embed_model = OllamaEmbeddings(model="deepseek-embed")  
-    embeddings = embed_model.embed_documents(split_text(documents))
+def embed(documents: list[Document]):
+    embed_model = OllamaEmbeddings(model="deepseek-llm-7b")  
+    chunks = split_text(documents)
+    # Extraire le contenu textuel de chaque chunk
+    texts = [chunk.page_content for chunk in chunks]
+    embeddings = embed_model.embed_documents(texts)
     return embeddings
 
 def sanitize_filename(filename: str) -> str:
@@ -57,12 +61,40 @@ def save_chunks(chunks: list[Document], output_path: str):
     
     print(f"Chunks sauvegardés dans {output_path}")
 
+def test_embeddings():
+    """Teste que les embeddings ont bien été générés correctement."""
+    documents = load_documents()
+    embeddings, chunks = embed(documents)
+    
+    # 1. Vérifier que le nombre d'embeddings correspond au nombre de chunks
+    if len(embeddings) != len(chunks):
+        print(f"Erreur: {len(embeddings)} embeddings générés pour {len(chunks)} chunks.")
+    else:
+        print(f"[OK] {len(embeddings)} embeddings générés pour {len(chunks)} chunks.")
+    
+    # 2. Vérifier la dimension d'un embedding (premier chunk)
+    if embeddings:
+        emb_dim = len(embeddings[0])
+        print(f"Dimension du premier embedding : {emb_dim}")
+    else:
+        print("Aucun embedding n'a été généré.")
+
+    # 3. Calculer la similarité cosinus entre le premier et le deuxième embedding (si disponibles)
+    if len(embeddings) >= 2:
+        emb1 = np.array(embeddings[0])
+        emb2 = np.array(embeddings[1])
+        cos_sim = np.dot(emb1, emb2) / (norm(emb1) * norm(emb2))
+        print(f"Similarité cosinus entre le 1er et le 2ème embedding : {cos_sim:.3f}")
+    else:
+        print("Pas assez d'embeddings pour calculer la similarité.")
+
 def main():
     documents = load_documents()
-    splitted_documents = split_text(documents)
-    embedded = embed(documents)
-    save_chunks(splitted_documents, OUTPUT_PATH)
-    return splitted_documents
+    embeddings, chunks = embed(documents)
+    save_chunks(chunks, OUTPUT_PATH)
+    print(f"Nombre total de chunks : {len(chunks)}")
+    # Lancement du test d'embeddings
+    test_embeddings()
 
 if __name__ == "__main__":
     splitted_docs = main()
