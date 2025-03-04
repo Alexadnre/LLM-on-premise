@@ -1,14 +1,14 @@
 import os
-import json
 import numpy as np
 from numpy.linalg import norm
 from langchain_community.document_loaders import DirectoryLoader, PDFPlumberLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
-from langchain_ollama import ChatOllama
+from langchain_ollama import OllamaEmbeddings
+
 
 DATA_PATH = "static2/"
-OUTPUT_PATH = "output"  
+OUTPUT_PATH = "output2"  
 
 def load_documents():
     documents = []
@@ -21,6 +21,7 @@ def load_documents():
 
     return documents
 
+
 def split_text(documents: list[Document]):
     text_splitter = RecursiveCharacterTextSplitter(
         chunk_size=1500,
@@ -32,8 +33,18 @@ def split_text(documents: list[Document]):
     print(f"Split {len(documents)} documents en {len(chunks)} chunks.")
     return chunks
 
+def embed(documents: list[Document]):
+    embed_model = OllamaEmbeddings(model="deepseek-llm:latest")  
+    chunks = split_text(documents)
+    texts = [chunk.page_content for chunk in chunks]
+    test_text = ["Bonjour, ceci est un test."]
+    embeddings = embed_model.embed_documents(test_text)
+    print(embeddings)
+
+    return embeddings, chunks
+
 def sanitize_filename(filename: str) -> str:
-    """Nettoie un nom de fichier en supprimant les espaces et caractères spéciaux."""
+    """ Nettoie un nom de fichier en supprimant les espaces et caractères spéciaux. """
     filename = os.path.basename(filename)
     filename = filename.replace(" ", "_").replace("/", "_").replace("\\", "_")
     return filename
@@ -52,68 +63,20 @@ def save_chunks(chunks: list[Document], output_path: str):
     
     print(f"Chunks sauvegardés dans {output_path}")
 
-def get_embedding(text: str, llm: ChatOllama):
-    """
-    Demande au modèle deepseek-llm:latest de renvoyer l'embedding
-    sous forme d'une liste de nombres en JSON.
-    """
-    prompt = (
-        "Fournis-moi l'embedding pour le texte suivant sous forme d'une liste de nombres en JSON, "
-        "sans explications ni texte supplémentaire.\n\n"
-        f"{text}"
-    )
-    response = llm.invoke(prompt)
-    try:
-        # On suppose que le modèle retourne uniquement un JSON.
-        embedding = json.loads(response.content)
-        return embedding
-    except json.JSONDecodeError as e:
-        print("Erreur lors du décodage JSON pour le texte :", text[:50], "...\nErreur :", e)
-        return None
-
-def embed_documents_with_llm(documents: list[Document]):
-    """
-    Pour chaque chunk, on interroge deepseek-llm:latest afin d'obtenir un embedding.
-    """
-    # Initialisation de ChatOllama avec deepseek-llm:latest
-    llm = ChatOllama(
-        model="deepseek-llm:latest",
-        device="cpu",            # ou "gpu" si approprié
-        trust_remote_code=True,
-        max_new_tokens=64,
-        temperature=0.8,         # température basse pour plus de déterminisme
-    )
-    chunks = split_text(documents)
-    embeddings = []
-    for i, chunk in enumerate(chunks):
-        print(f"Embedding du chunk {i+1}/{len(chunks)}...")
-        emb = get_embedding(chunk.page_content, llm)
-        if emb is not None:
-            embeddings.append(emb)
-        else:
-            embeddings.append([])  # Optionnel : on ajoute une liste vide en cas d'erreur
-    return embeddings, chunks
+def save_embeddings(embeddings: list, output_path: str):
+    os.makedirs(output_path, exist_ok=True)
+    for i, emb in enumerate(embeddings):
+        file_path = os.path.join(output_path, f"embedding_{i}.txt")
+        with open(file_path, "w", encoding="utf-8") as f:
+            f.write(str(emb))
+    print(f"Embeddings sauvegardés dans {output_path}")
 
 def test_embeddings():
     """Teste que les embeddings ont bien été générés correctement."""
     documents = load_documents()
-    embeddings, chunks = embed_documents_with_llm(documents)
-    
-    # 1. Vérifier que le nombre d'embeddings correspond au nombre de chunks
-    if len(embeddings) != len(chunks):
-        print(f"Erreur: {len(embeddings)} embeddings générés pour {len(chunks)} chunks.")
-    else:
-        print(f"[OK] {len(embeddings)} embeddings générés pour {len(chunks)} chunks.")
-    
-    # 2. Vérifier la dimension du premier embedding
-    if embeddings and embeddings[0]:
-        emb_dim = len(embeddings[0])
-        print(f"Dimension du premier embedding : {emb_dim}")
-    else:
-        print("Aucun embedding n'a été généré pour le premier chunk.")
-    
-    # 3. Calculer la similarité cosinus entre le premier et le deuxième embedding (si disponibles)
-    if len(embeddings) >= 2 and embeddings[0] and embeddings[1]:
+    embeddings, chunks = embed(documents)
+
+    if len(embeddings) >= 2:
         emb1 = np.array(embeddings[0])
         emb2 = np.array(embeddings[1])
         cos_sim = np.dot(emb1, emb2) / (norm(emb1) * norm(emb2))
@@ -123,10 +86,15 @@ def test_embeddings():
 
 def main():
     documents = load_documents()
-    embeddings, chunks = embed_documents_with_llm(documents)
+    embeddings, chunks = embed(documents)
     save_chunks(chunks, OUTPUT_PATH)
+    save_embeddings(embeddings, OUTPUT_PATH)
     print(f"Nombre total de chunks : {len(chunks)}")
+    # Lancement du test d'embeddings
     test_embeddings()
+    return chunks
 
 if __name__ == "__main__":
-    main()
+    splitted_docs = main()
+    print(f"Nombre total de chunks : {len(splitted_docs)}")
+

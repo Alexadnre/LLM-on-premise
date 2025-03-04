@@ -1,0 +1,26 @@
+Développement sur AWS (GK4504) 3 Associate 500
+Développement avancé sur AWS (GK4505) 3 Associate 600
+Building Streaming Data Analytics Solutions 4 Specialty 800
+on AWS (GK7377B)
+Running Containers on Amazon Elastic 3 Associate 600
+Kubernetes Service - EKS (GK7381)
+Data Warehousing sur AWS (GK4375) 3 Specialty 600
+Planifier et concevoir des bases de données 3 Specialty 600
+sur AWS (GK4510)
+Security Engineering on AWS (GK3338) 3 Specialty 600
+.
+2. MICROSOFT
+Global Knowledge est partenaire formation et certification Microsoft Gold Certified. Chaque
+formation est animée par un instructeur certifié expérimenté dans la technologie couverte, la pratique
+de labs ainsi qu'un support de cours électronique sont inclus. Voici les grands thèmes proposés,
+n'hésitez à nous consulter pour avoir le détail et l’exhaustivité des formations :
+✓ Microsoft Power Platform
+✓ Microsoft Azure
+✓ Microsoft 365
+✓ Microsoft Windows 10
+✓ Microsoft Windows Server
+✓ Microsoft Skype/Teams
+✓ Microsoft conformité et sécurité
+✓ Microsoft BI
+✓ Microsoft Dynamics
+11 / 29

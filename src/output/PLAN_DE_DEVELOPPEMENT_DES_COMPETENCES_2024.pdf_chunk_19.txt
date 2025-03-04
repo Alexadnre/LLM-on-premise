@@ -1,0 +1,32 @@
+LES FORMATIONS PAR EDITEURS
+1. AWS
+MICROPOLE est partenaire AMAZON WEB SERVICES et est éligible au programme 2023
+« ACCELERATION », dans ce cadre nous bénéficions d’une offre tarifaire sur les formations AWS
+délivrées par Global Knowledge.
+Ce programme est destiné à préparer nos équipes aux examens de certification AWS. Un voucher de
+certification sera remis à la fin de la formation. Les partenaires qui participent à ce programme doivent
+s'inscrire et passer l'examen de certification AWS associé à la formation préparée.
+Intitulés (Réf.) Durée Certicification Tarif €HT spécial
+en AWS partenaires
+jours
+Opérations système sur AWS (GK4503) 3 Associate 500
+Architecture sur AWS (GK4502) 3 Associate 500
+Booster : AWS Certified Solutions Architect 5 Associate 800
+Associate (GK4502BC5)
+Architecture avancée sur AWS (GK1980) 3 Professional 600
+AWS Certified Solutions Architect 5 Professional 900
+Professional Certification Bootcamp
+(GK1980BC5)
+Ingénierie DevOps sur AWS (GK1979) 3 Professional 600
+Développement sur AWS (GK4504) 3 Associate 500
+Développement avancé sur AWS (GK4505) 3 Associate 600
+Building Streaming Data Analytics Solutions 4 Specialty 800
+on AWS (GK7377B)
+Running Containers on Amazon Elastic 3 Associate 600
+Kubernetes Service - EKS (GK7381)
+Data Warehousing sur AWS (GK4375) 3 Specialty 600
+Planifier et concevoir des bases de données 3 Specialty 600
+sur AWS (GK4510)
+Security Engineering on AWS (GK3338) 3 Specialty 600
+.
+2. MICROSOFT
