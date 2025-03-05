@@ -5,16 +5,27 @@ from langchain_community.document_loaders import DirectoryLoader, PDFPlumberLoad
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
 from langchain_ollama import OllamaEmbeddings
+from docx2pdf import convert
 
 
-DATA_PATH = "static2/"
-OUTPUT_PATH = "output2"  
+DATA_PATH = "static/base_de_connaissance"
+OUTPUT_PATH = "output"  
+
+def convert_all_docx_in_folder(folder_path):
+    # Parcours tous les fichiers du dossier
+    for filename in os.listdir(folder_path):
+        if filename.endswith(".docx"):
+            input_path = os.path.join(folder_path, filename)
+            output_path = os.path.join(folder_path, f"{os.path.splitext(filename)[0]}.pdf")
+            # Conversion du fichier .docx en .pdf
+            convert(input_path, output_path)
+            print(f"Le fichier {filename} a été converti en PDF.")
+            os.remove(input_path)
 
 def load_documents():
     documents = []
     
-    docx_loader = DirectoryLoader(DATA_PATH, glob="*.docx")
-    documents.extend(docx_loader.load())
+    convert_all_docx_in_folder(DATA_PATH)
 
     pdf_loader = DirectoryLoader(DATA_PATH, glob="*.pdf", loader_cls=PDFPlumberLoader)
     documents.extend(pdf_loader.load())
@@ -37,8 +48,7 @@ def embed(documents: list[Document]):
     embed_model = OllamaEmbeddings(model="deepseek-llm:latest")  
     chunks = split_text(documents)
     texts = [chunk.page_content for chunk in chunks]
-    test_text = ["Bonjour, ceci est un test."]
-    embeddings = embed_model.embed_documents(test_text)
+    embeddings = embed_model.embed_documents(texts)
     print(embeddings)
 
     return embeddings, chunks
