@@ -1,9 +1,0 @@
-Saisie des Absences pour Examens Médicaux de Grossesse
-
-Lorsque vous devez vous absenter pour des examens médicaux obligatoires liés à votre grossesse, il est important de suivre la procédure adéquate pour que ces absences soient correctement enregistrées et justifiées auprès de votre employeur. Voici les étapes à suivre :
-
-1. Demande d'Autorisation à Votre Manager : Initiez votre demande d'absence en vous adressant directement à votre manager. Cette démarche se fait via le Système d'Administration des Feuilles d'Absence (SAF), où vous devrez spécifier la nature de votre absence.
-
-2. Saisie dans le SAF : Lors de la saisie de votre demande dans le système SAF, choisissez l'option “Conventionnel” comme motif d'absence. Il est essentiel de préciser dans votre demande que l'absence est due à un “Examen obligatoire suivi grossesse”. Cette précision garantit que l'absence est bien enregistrée sous le bon motif et facilite son traitement par l’équipe RH Paie.
-
-3. Envoi du Justificatif : Après votre rendez-vous, vous devez fournir un justificatif de votre absence. Ce document peut être une attestation de présence délivrée par le médecin, indiquant votre nom, le motif de la consultation, ainsi que la date et l'heure du rendez-vous. Envoyez ce justificatif par mail à [AdminRH]( mailto:adminrh@micropole.com) pour officialiser votre absence et permettre le traitement administratif nécessaire.

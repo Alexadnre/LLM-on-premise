@@ -1,35 +1,46 @@
 import os
 import numpy as np
+import pdfplumber
 from numpy.linalg import norm
 from langchain_community.document_loaders import DirectoryLoader, PDFPlumberLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
 from langchain_ollama import OllamaEmbeddings
 from docx2pdf import convert
+from tqdm import tqdm  # Ajout de tqdm pour la barre de progression
+import re
+from dotenv import load_dotenv
 
 
-DATA_PATH = "static/base_de_connaissance"
-OUTPUT_PATH = "output"  
+# Charger les variables d'environnement
+load_dotenv()
 
-def convert_all_docx_in_folder(folder_path):
-    # Parcours tous les fichiers du dossier
-    for filename in os.listdir(folder_path):
-        if filename.endswith(".docx"):
-            input_path = os.path.join(folder_path, filename)
-            output_path = os.path.join(folder_path, f"{os.path.splitext(filename)[0]}.pdf")
-            # Conversion du fichier .docx en .pdf
-            convert(input_path, output_path)
-            print(f"Le fichier {filename} a été converti en PDF.")
-            os.remove(input_path)
+# Utilisation des variables d'environnement
+DATA_PATH = os.getenv("DATA_PATH")
+OUTPUT_PATH = os.getenv("OUTPUT_PATH")
+EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL")
+
+
+# def convert_all_docx_in_folder(folder_path):
+#     # Parcours tous les fichiers du dossier
+#     for filename in os.listdir(folder_path):
+#         if filename.endswith(".docx"):
+#             input_path = os.path.join(folder_path, filename)
+#             output_path = os.path.join(folder_path, f"{os.path.splitext(filename)[0]}.pdf")
+#             # Conversion du fichier .docx en .pdf
+#             convert(input_path, output_path)
+#             print(f"Le fichier {filename} a été converti en PDF.")
+#             os.remove(input_path)
+
 
 def load_documents():
     documents = []
     
-    convert_all_docx_in_folder(DATA_PATH)
+    # convert_all_docx_in_folder(DATA_PATH)
 
     pdf_loader = DirectoryLoader(DATA_PATH, glob="*.pdf", loader_cls=PDFPlumberLoader)
     documents.extend(pdf_loader.load())
-
+    print(f"📄 Chargé {len(documents)} pages de documents PDF.")
     return documents
 
 
@@ -44,67 +55,98 @@ def split_text(documents: list[Document]):
     print(f"Split {len(documents)} documents en {len(chunks)} chunks.")
     return chunks
 
-def embed(documents: list[Document]):
-    embed_model = OllamaEmbeddings(model="deepseek-llm:latest")  
-    chunks = split_text(documents)
-    texts = [chunk.page_content for chunk in chunks]
-    embeddings = embed_model.embed_documents(texts)
-    print(embeddings)
 
-    return embeddings, chunks
+def embed(chunks: list[Document]):
+    try:
+        embed_model = OllamaEmbeddings(model=EMBEDDING_MODEL)  
+    except Exception as e:
+        print(f"❌ Erreur avec Ollama : {e}")
+        return [], []
+
+    texts = [chunk.page_content for chunk in chunks]
+
+    embeddings = []
+    print("🔄 Encodage des documents...")
+    
+    for text in tqdm(texts, desc="📄 Encodage en cours", unit="chunk"):
+        try:
+            embeddings.append(embed_model.embed_documents([text])[0])
+        except Exception as e:
+            print(f"⚠️ Erreur d'encodage pour un chunk : {e}")
+
+    return embeddings
+
 
 def sanitize_filename(filename: str) -> str:
     """ Nettoie un nom de fichier en supprimant les espaces et caractères spéciaux. """
     filename = os.path.basename(filename)
-    filename = filename.replace(" ", "_").replace("/", "_").replace("\\", "_")
+    filename = re.sub(r"[^\w\-.]", "_", filename)  # Garde lettres, chiffres, tirets et points
     return filename
 
-def save_chunks(chunks: list[Document], output_path: str):
-    os.makedirs(output_path, exist_ok=True)
 
-    for i, chunk in enumerate(chunks):
+def save_chunks(chunks: list[Document], output_path: str):
+    chunk_path = os.path.join(output_path, 'chunks')
+    os.makedirs(chunk_path, exist_ok=True)  # Création du sous-dossier 'chunks'
+
+    for i, chunk in tqdm(enumerate(chunks), desc="💾 Sauvegarde des chunks", total=len(chunks), unit="chunk"):
         source = chunk.metadata.get('source', 'unknown')
         source_cleaned = sanitize_filename(source)
 
-        file_path = os.path.join(output_path, f"{source_cleaned}_chunk_{i}.txt")
+        file_path = os.path.join(chunk_path, f"{source_cleaned}_chunk_{i}.txt")
 
         with open(file_path, "w", encoding="utf-8") as f:
             f.write(chunk.page_content)
     
-    print(f"Chunks sauvegardés dans {output_path}")
+    print(f"✅ Chunks sauvegardés dans {chunk_path}")
+
 
 def save_embeddings(embeddings: list, output_path: str):
-    os.makedirs(output_path, exist_ok=True)
-    for i, emb in enumerate(embeddings):
-        file_path = os.path.join(output_path, f"embedding_{i}.txt")
+    embedding_path = os.path.join(output_path, 'embedding')
+    os.makedirs(embedding_path, exist_ok=True)  # Création du sous-dossier 'embedding'
+
+    for i, emb in tqdm(enumerate(embeddings), desc="💾 Sauvegarde des embeddings", total=len(embeddings), unit="embedding"):
+        file_path = os.path.join(embedding_path, f"embedding_{i}.txt")
         with open(file_path, "w", encoding="utf-8") as f:
             f.write(str(emb))
-    print(f"Embeddings sauvegardés dans {output_path}")
+    print(f"✅ Embeddings sauvegardés dans {embedding_path}")
 
-def test_embeddings():
-    """Teste que les embeddings ont bien été générés correctement."""
-    documents = load_documents()
-    embeddings, chunks = embed(documents)
 
-    if len(embeddings) >= 2:
-        emb1 = np.array(embeddings[0])
-        emb2 = np.array(embeddings[1])
-        cos_sim = np.dot(emb1, emb2) / (norm(emb1) * norm(emb2))
-        print(f"Similarité cosinus entre le 1er et le 2ème embedding : {cos_sim:.3f}")
-    else:
-        print("Pas assez d'embeddings pour calculer la similarité.")
 
 def main():
+    print("🔄 Chargement des documents...")
     documents = load_documents()
-    embeddings, chunks = embed(documents)
+    
+    if not documents:
+        print("❌ Aucun document trouvé. Fin du script.")
+        return
+    
+    print("🔄 Division des documents en chunks...")
+    chunks = split_text(documents)
+
+    if not chunks:
+        print("❌ Échec de la division des documents.")
+        return
+
+    print("🔄 Génération des embeddings...")
+    embeddings = embed(chunks)
+
+    if not embeddings:
+        print("❌ Échec de la génération des embeddings.")
+        return
+
+    print("💾 Sauvegarde des chunks...")
     save_chunks(chunks, OUTPUT_PATH)
+
+    print("💾 Sauvegarde des embeddings...")
     save_embeddings(embeddings, OUTPUT_PATH)
-    print(f"Nombre total de chunks : {len(chunks)}")
-    # Lancement du test d'embeddings
-    test_embeddings()
+
+    print(f"✅ Nombre total de chunks : {len(chunks)}")
+
+
+    print("🎉 Traitement terminé !")
     return chunks
+
 
 if __name__ == "__main__":
     splitted_docs = main()
     print(f"Nombre total de chunks : {len(splitted_docs)}")
-

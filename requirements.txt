@@ -1,0 +1,8 @@
+numpy
+pdfplumber
+langchain
+langchain-community
+langchain-ollama
+docx2pdf
+tqdm
+python-dotenv

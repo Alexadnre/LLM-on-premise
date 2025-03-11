@@ -1,0 +1,8 @@
+Chaque année, on acquière un nombre de jours de RTT pour l’année. Ces jours sont
+répartis en RTT S et RTT E et doivent être pris avant le 31 décembre de l’année.
+Lorsque les RTT E de l’année n’ont pas été pris, ils se transforment en RTT S au 1er janvier
+de l’année suivante et doivent être pris avant le 31 mars.
+7.22 Impact de l'Arrêt Maladie sur l'Acquisition de RTT
+L'éffét d'un arré t maladié sur l'accumulation dé vos jours dé RTT dé pénd dé la duré é dé
+cét arré t. Voici cé qu'il faut savoir :
+a mis en forme : Pied de page
