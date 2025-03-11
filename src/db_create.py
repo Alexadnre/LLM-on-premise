@@ -14,11 +14,10 @@ def save_to_chroma(chunks: list[Document]):
         shutil.rmtree(CHROMA_PATH)
 
     embeddings = OllamaEmbeddings(model=EMBEDDING_MODEL)
-    db = Chroma(embedding_function=embeddings, persist_directory=CHROMA_PATH)
-
+    db = Chroma.from_documents(chunks,embeddings, persist_directory=CHROMA_PATH)
     # Utilisation de tqdm pour afficher la progression
-    for chunk in tqdm(chunks, desc="Generating embeddings"):
-        db.add_documents([chunk])
+    # for chunk in tqdm(chunks, desc="Generating embeddings"):
+    #     db.add_documents([chunk])
 
     db.persist()
     print(f"Saved {len(chunks)} chunks to {CHROMA_PATH}.")
