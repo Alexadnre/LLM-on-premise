@@ -7,9 +7,9 @@ from langchain.schema import Document
 from langchain_ollama import OllamaEmbeddings
 from docx2pdf import convert
 
-
 DATA_PATH = "static/base_de_connaissance"
 OUTPUT_PATH = "output"  
+
 
 def convert_all_docx_in_folder(folder_path):
     # Parcours tous les fichiers du dossier
