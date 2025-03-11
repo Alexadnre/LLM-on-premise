@@ -21,17 +21,6 @@ OUTPUT_PATH = os.getenv("OUTPUT_PATH")
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL")
 
 
-# def convert_all_docx_in_folder(folder_path):
-#     # Parcours tous les fichiers du dossier
-#     for filename in os.listdir(folder_path):
-#         if filename.endswith(".docx"):
-#             input_path = os.path.join(folder_path, filename)
-#             output_path = os.path.join(folder_path, f"{os.path.splitext(filename)[0]}.pdf")
-#             # Conversion du fichier .docx en .pdf
-#             convert(input_path, output_path)
-#             print(f"Le fichier {filename} a été converti en PDF.")
-#             os.remove(input_path)
-
 
 
 def load_documents():
@@ -57,59 +46,6 @@ def split_text(documents: list[Document]):
     return chunks
 
 
-def embed(chunks: list[Document]):
-    try:
-        embed_model = OllamaEmbeddings(model=EMBEDDING_MODEL)  
-    except Exception as e:
-        print(f"❌ Erreur avec Ollama : {e}")
-        return [], []
-
-    texts = [chunk.page_content for chunk in chunks]
-
-    embeddings = []
-    print("🔄 Encodage des documents...")
-    
-    for text in tqdm(texts, desc="📄 Encodage en cours", unit="chunk"):
-        try:
-            embeddings.append(embed_model.embed_documents([text])[0])
-        except Exception as e:
-            print(f"⚠️ Erreur d'encodage pour un chunk : {e}")
-
-    return embeddings
-
-
-def sanitize_filename(filename: str) -> str:
-    """ Nettoie un nom de fichier en supprimant les espaces et caractères spéciaux. """
-    filename = os.path.basename(filename)
-    filename = re.sub(r"[^\w\-.]", "_", filename)  # Garde lettres, chiffres, tirets et points
-    return filename
-
-
-def save_chunks(chunks: list[Document], output_path: str):
-    chunk_path = os.path.join(output_path, 'chunks')
-    os.makedirs(chunk_path, exist_ok=True)  # Création du sous-dossier 'chunks'
-
-    for i, chunk in tqdm(enumerate(chunks), desc="💾 Sauvegarde des chunks", total=len(chunks), unit="chunk"):
-        source = chunk.metadata.get('source', 'unknown')
-        source_cleaned = sanitize_filename(source)
-
-        file_path = os.path.join(chunk_path, f"{source_cleaned}_chunk_{i}.txt")
-
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(chunk.page_content)
-    
-    print(f"✅ Chunks sauvegardés dans {chunk_path}")
-
-
-def save_embeddings(embeddings: list, output_path: str):
-    embedding_path = os.path.join(output_path, 'embedding')
-    os.makedirs(embedding_path, exist_ok=True)  # Création du sous-dossier 'embedding'
-
-    for i, emb in tqdm(enumerate(embeddings), desc="💾 Sauvegarde des embeddings", total=len(embeddings), unit="embedding"):
-        file_path = os.path.join(embedding_path, f"embedding_{i}.txt")
-        with open(file_path, "w", encoding="utf-8") as f:
-            f.write(str(emb))
-    print(f"✅ Embeddings sauvegardés dans {embedding_path}")
 
 
 
@@ -127,21 +63,6 @@ def main():
     if not chunks:
         print("❌ Échec de la division des documents.")
         return
-
-    print("🔄 Génération des embeddings...")
-    embeddings = embed(chunks)
-
-    if not embeddings:
-        print("❌ Échec de la génération des embeddings.")
-        return
-
-    print("💾 Sauvegarde des chunks...")
-    save_chunks(chunks, OUTPUT_PATH)
-
-    print("💾 Sauvegarde des embeddings...")
-    save_embeddings(embeddings, OUTPUT_PATH)
-
-    print(f"✅ Nombre total de chunks : {len(chunks)}")
 
 
     print("🎉 Traitement terminé !")
