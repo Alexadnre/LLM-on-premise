@@ -33,6 +33,7 @@ EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL")
 #             os.remove(input_path)
 
 
+
 def load_documents():
     documents = []
     
