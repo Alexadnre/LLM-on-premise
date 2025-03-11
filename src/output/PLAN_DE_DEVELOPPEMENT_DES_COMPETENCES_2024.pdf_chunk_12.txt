@@ -1,0 +1,28 @@
+3. Langages & Développement
+Les programmes informatiques sont présents dans notre quotidien : dans les voitures, les
+smartphones, les objets connectés. Le choix d’un langage reste complexe et doit tenir compte de
+nombreux critères : la richesse des librairies, le dynamisme de la communauté, la stratégie de l’éditeur,
+la qualité de la documentation et les droits d’utilisation. Les formations ci-dessous sont dispensées
+par les organismes de formation tels que M2i, Orsys, Sparks et même via le Campus Atlas. N'hésitez
+à nous consulter pour avoir le détail et l’exhaustivité des formations :
+✓ C, C++
+✓ PHP 5, 7 et 8 - Développement d'applications Web
+✓ Python, Python pour expert, Python pour la data Science
+✓ ASP.NET Core MVC 6
+✓ Objet, UML
+✓ Java, Java EE, Jakarta
+✓ iOS, Android, multiplateformes mobiles
+✓ Conception Objet, UML, Design Patterns
+✓ Etc.
+4. Tests & Qualité des applications
+✓ ISTQB Agile Tester (avec certification) - Sparks
+21 heures en présentiel ou à distance
+✓ ISTQB Foundation (avec certification) - Sparks
+21 heures en présentiel ou à distance
+✓ ISTQB niveau avancé - Test Analyst (avec certification) - Sparks
+28 heures en présentiel ou à distance
+✓ RGAA, auditer l'accessibilité d'un site web ou d'une application mobile - Orsys
+35 heures en présentiel ou à distance
+✓ Mise en œuvre de tests pour les applications mobiles - Orsys
+14 heures en présentiel ou à distance
+5. Ergonomie et accessibilité web

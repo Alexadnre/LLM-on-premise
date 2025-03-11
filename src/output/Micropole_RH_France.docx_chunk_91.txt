@@ -1,0 +1,11 @@
+Notes de frais
+
+Procédure de Validation des Notes de Frais par le Manager 
+
+La validation des notes de frais par le manager constitue une étape essentielle dans la gestion administrative et financière au sein de notre entreprise. Lorsqu'un collaborateur soumet ses notes de frais, le manager est tenu de suivre une procédure spécifique pour leur validation. Cette procédure se déroule comme suit :
+
+1. Signature du PDF : Le manager doit d'abord insérer sa signature électronique dans le document PDF contenant la note de frais, qui lui a été préalablement envoyé par email par le collaborateur. Cette action atteste de l'approbation du manager quant aux dépenses engagées par le collaborateur.
+
+2. Répétition de la démarche : Si plusieurs notes de frais sont soumises simultanément par un ou plusieurs collaborateurs, le manager est tenu de répéter cette opération de signature pour chaque document reçu.
+
+3. Regroupement des documents : Une fois toutes les notes de frais dûment signées, le manager doit les assembler avec leurs justificatifs associés dans un seul fichier zip. Cette consolidation facilite le traitement et l'archivage des documents.

@@ -1,0 +1,15 @@
+Attention : Ce solde sur le bulletin de paie ne tient pas compte des demandes de congés payés que vous avez posées dans SAF et qui n'ont pas encore été déduites en raison du décalage d'un mois dans la gestion des absences et de la paie (par exemple, une absence en mars sera décomptée sur la paie d'avril).
+
+2. Dans votre Système SAF (Système d'Administration des Fiches) :
+
+Sur la page d'accueil de SAF, vous trouverez également le solde de vos congés payés à prendre.
+
+Attention : Le solde indiqué dans SAF tient compte de toutes les demandes de CP que vous avez saisies. C'est pourquoi il peut y avoir une différence entre le solde indiqué dans SAF et celui sur votre bulletin de paie. Il est important de prendre en compte ces nuances pour planifier vos congés.
+
+Si vous constatez une différence significative entre ces deux soldes, n'hésitez pas à contacter l’équipe RH Paie pour obtenir des clarifications. 
+
+Ainsi, vous pourrez gérer au mieux votre solde de CP et planifier vos périodes de repos en toute sérénité.  
+
+Visualisation des Congés Payés Acquis dans SAF pour les Nouveaux Arrivants 
+
+Pour les nouveaux arrivants, il peut parfois y avoir une confusion quant à l'affichage des congés payés acquis sur le bulletin de paie et leur apparition dans le système SAF. Voici comment visualiser vos congés payés acquis dans SAF :

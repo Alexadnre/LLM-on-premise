@@ -1,8 +1,10 @@
-
 import os
+import numpy as np
+from numpy.linalg import norm
 from langchain_community.document_loaders import DirectoryLoader, PDFPlumberLoader
 from langchain.text_splitter import RecursiveCharacterTextSplitter
 from langchain.schema import Document
+from langchain_ollama import OllamaEmbeddings
 from docx2pdf import convert
 
 DATA_PATH = "static/base_de_connaissance"
@@ -42,6 +44,15 @@ def split_text(documents: list[Document]):
     print(f"Split {len(documents)} documents en {len(chunks)} chunks.")
     return chunks
 
+def embed(documents: list[Document]):
+    embed_model = OllamaEmbeddings(model="deepseek-llm:latest")  
+    chunks = split_text(documents)
+    texts = [chunk.page_content for chunk in chunks]
+    embeddings = embed_model.embed_documents(texts)
+    print(embeddings)
+
+    return embeddings, chunks
+
 def sanitize_filename(filename: str) -> str:
     """ Nettoie un nom de fichier en supprimant les espaces et caractères spéciaux. """
     filename = os.path.basename(filename)
@@ -62,11 +73,36 @@ def save_chunks(chunks: list[Document], output_path: str):
     
     print(f"Chunks sauvegardés dans {output_path}")
 
+def save_embeddings(embeddings: list, output_path: str):
+    os.makedirs(output_path, exist_ok=True)
+    for i, emb in enumerate(embeddings):
+        file_path = os.path.join(output_path, f"embedding_{i}.txt")
+        with open(file_path, "w", encoding="utf-8") as f:
+            f.write(str(emb))
+    print(f"Embeddings sauvegardés dans {output_path}")
+
+def test_embeddings():
+    """Teste que les embeddings ont bien été générés correctement."""
+    documents = load_documents()
+    embeddings, chunks = embed(documents)
+
+    if len(embeddings) >= 2:
+        emb1 = np.array(embeddings[0])
+        emb2 = np.array(embeddings[1])
+        cos_sim = np.dot(emb1, emb2) / (norm(emb1) * norm(emb2))
+        print(f"Similarité cosinus entre le 1er et le 2ème embedding : {cos_sim:.3f}")
+    else:
+        print("Pas assez d'embeddings pour calculer la similarité.")
+
 def main():
     documents = load_documents()
-    splitted_documents = split_text(documents)
-    save_chunks(splitted_documents, OUTPUT_PATH)
-    return splitted_documents
+    embeddings, chunks = embed(documents)
+    save_chunks(chunks, OUTPUT_PATH)
+    save_embeddings(embeddings, OUTPUT_PATH)
+    print(f"Nombre total de chunks : {len(chunks)}")
+    # Lancement du test d'embeddings
+    test_embeddings()
+    return chunks
 
 if __name__ == "__main__":
     splitted_docs = main()

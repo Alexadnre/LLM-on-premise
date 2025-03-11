@@ -1,0 +1,20 @@
+Formations DeVops & intégration continue du Campus ATLAS
+DevOps traduit l’union des développeurs (dev) et des professionnels des opérations informatiques
+(ops) ; on note son omniprésence dans les DSI. Elle vise à améliorer la collaboration entre les
+différents processus et corps de métiers pour créer des produits plus performants en moins de
+temps.
+✓ DevOps : démarche et outils – Global Knowledge
+14 heures à distance
+✓ DevOps : DevOps Foundation – Global Knowledge
+14 heures à distance
+✓ Jenkins : intégration continue – Global Knowledge
+14 heures à distance
+✓ Git - Gestion du contrôle de versions – Global Knowledge
+14 heures à distance
+Formations TOGAF
+La technologie TOGAF® est un ensemble de bonnes pratiques managériales pour bien gérer une
+architecture d’entreprise. Il est d'ailleurs possible de transposer dans TOGAF® les principes de
+COBIT.
+✓ TOGAF® 9.2 Foundation avec certification - PLB
+21 heures en présentiel ou à distance
+5 / 29
