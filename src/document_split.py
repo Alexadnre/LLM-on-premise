@@ -16,7 +16,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 # Utilisation des variables d'environnement
-DATA_PATH = os.getenv("DATA_PATH")
+DATA_PATH = os.getenv("DATA_PDF_PATH")
 OUTPUT_PATH = os.getenv("OUTPUT_PATH")
 EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL")
 
