@@ -1,6 +1,9 @@
-docx2pdf
-streamlit
+numpy
+pdfplumber
 langchain
 langchain-community
 langchain-ollama
-pdfplumber
+docx2pdf
+tqdm
+python-dotenv
+

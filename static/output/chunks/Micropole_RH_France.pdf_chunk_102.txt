@@ -1,0 +1,20 @@
+a mis en forme : En-tête
+9 Notes de frais
+9.1 Procédure de Validation des Notes de Frais par le Manager
+La validation dés notés dé frais par lé managér constitué uné é tapé ésséntiéllé dans la
+géstion administrativé ét financié ré au séin dé notré éntréprisé. Lorsqu'un collaboratéur
+soumét sés notés dé frais, lé managér ést ténu dé suivré uné procé duré spé cifiqué pour
+léur validation. Cétté procé duré sé dé roulé commé suit :
+1. Signaturé du PDF : Lé managér doit d'abord insé rér sa signaturé é léctroniqué dans lé
+documént PDF conténant la noté dé frais, qui lui a é té pré alablémént énvoyé par émail
+par lé collaboratéur. Cétté action attésté dé l'approbation du managér quant aux
+dé pénsés éngagé és par lé collaboratéur.
+2. Ré pé tition dé la dé marché : Si plusiéurs notés dé frais sont soumisés simultané mént
+par un ou plusiéurs collaboratéurs, lé managér ést ténu dé ré pé tér cétté opé ration dé
+signaturé pour chaqué documént réçu.
+3. Régroupémént dés documénts : Uné fois toutés lés notés dé frais du mént signé és, lé
+managér doit lés assémblér avéc léurs justificatifs associé s dans un séul fichiér zip. Cétté
+consolidation facilité lé traitémént ét l'archivagé dés documénts.
+4. Envoi dés documénts : Enfin, lé managér énvoié lé fichiér zip a l'adréssé émail dé dié é
+[AdminRH]( mailto:adminrh@micropolé.com). Cét énvoi marqué la finalisation du
+procéssus dé validation dés notés dé frais. Pour uné prisé én chargé par l’é quipé RH Paié

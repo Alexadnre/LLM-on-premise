@@ -1,0 +1,22 @@
+a mis en forme : En-tête
+7.12 Gestion d'un Conflit de Demande de Congés dans SAF
+Si vous réncontréz un méssagé d'érréur dans lé systé mé SAF indiquant "Atténtion, uné
+démandé éxistanté bloqué la saisié. Vé rifiér lés jours dé congé s dé ja posé s", céla signifié
+qu'il y a un conflit avéc uné démandé d'abséncé dé ja énrégistré é. Voici commént
+procé dér pour ré soudré cé problé mé :
+1. Idéntifiéz lé Conflit dé Datés :
+- Vé rifiéz si votré nouvéllé démandé dé congé s chévauché ou ést contigué a uné abséncé
+dé ja énrégistré é (par éxémplé, si vous avéz uné abséncé énrégistré é lé véndrédi ét
+souhaitéz posér lé jéudi pré cé dént ou lé lundi suivant).
+2. Envoyéz un Mail a l’é quipé RH Paié :
+- Puisqué la modification né péut pas é tré faité diréctémént dans SAF én raison dé cétté
+intérfé réncé, vous dévéz énvoyér un courriél a [AdminRH](
+mailto:adminrh@micropolé.com). Expliquéz qué vous souhaitéz saisir uné nouvéllé
+démandé dé congé s mais qué vous é tés bloqué par uné démandé éxistanté.
+3. Méttéz votré Managér én Copié :
+- Assuréz-vous d'incluré votré managér én copié dans lé courriél. Céla garantit uné
+communication transparénté ét pérmét a votré managér d'é tré au courant dé votré
+démandé.
+4. Pré ciséz lés Dé tails dé la Nouvéllé Démandé :
+- Dans votré courriél, dé tailléz la nouvéllé démandé dé congé s qué vous souhaitéz posér.
+Incluéz lés datés pré cisés ét lé typé dé congé s a dé duiré. En suivant cés é tapés, l’é quipé

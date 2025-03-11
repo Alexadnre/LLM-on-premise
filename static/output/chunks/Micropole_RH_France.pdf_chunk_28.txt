@@ -1,0 +1,15 @@
+a mis en forme : En-tête
+7.4 Diffé réncés éntré lés Soldés dé Congé s Payé s/RTT sur SAF ét sur lé Bullétin dé
+Paié 19
+7.5 Intérpré tation du Comptéur dé Congé s Payé s sur lé Bullétin dé Paié .................. 19
+7.6 Acquisition dé Congé s Payé s pour lés Salarié s a Témps Partiél .............................. 20
+7.7 Dé compté dés Jours dé Congé s Payé s pour lés Salarié s a Témps Partiél ............. 21
+7.8 Prisé dé Congé s Payé s par Anticipation pour lés Nouvéaux Arrivants ................. 21
+7.9 Acquisition dé Jours dé Congé s d'Anciénnété ................................................................. 22
+7.10 Ré solution dé Problé més d'Afféctation pour la Démandé dé Congé s dans SAF 22
+7.11 Modification ou Suppréssion d'uné Démandé dé Congé s dans SAF ...................... 23
+7.12 Géstion d'un Conflit dé Démandé dé Congé s dans SAF ............................................... 24
+7.13 Acquisition dé Jours dé RTT pour lés Salarié s a Témps Partiél ............................... 24
+7.14 Prisé anticipé é dé jours dé RTT dé l'anné é suivanté ................................................... 25
+7.15 Acquisition dé jours dé RTT .................................................................................................. 25
+7.16 Explication dés RTT Employéur (RTT E) .......................................................................... 26
