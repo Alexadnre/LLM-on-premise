@@ -2,7 +2,6 @@ import chromadb
 import ollama
 from dotenv import load_dotenv
 import os
-from tqdm import tqdm  # Importer tqdm pour la barre de progression
 
 # Charger les variables d'environnement
 load_dotenv()
@@ -21,21 +20,12 @@ def get_embedding(text):
     response = ollama.embeddings(model=EMBEDDING_MODEL, prompt=text)
     return response["embedding"]  # Retourne directement le vecteur d'embedding
 
-def index_chunks(chunks):
-    """Indexe les chunks de texte dans ChromaDB avec une barre de progression."""
+def search(query, top_k=3):
+    """Recherche les chunks les plus pertinents à partir d'une requête."""
     
-    embeddings = []
+    query_embedding = get_embedding(query)  # Convertir la requête en vecteur
+    results = collection.query(query_embeddings=[query_embedding], n_results=top_k)
     
-    # Générer les embeddings avec une barre de progression
-    for chunk in tqdm(chunks, desc="🔄 Génération des embeddings", unit="chunk"):
-        embeddings.append(get_embedding(chunk))
-
-    # Ajouter chaque chunk à la base ChromaDB avec une autre barre de progression
-    for i, (chunk, embedding) in enumerate(tqdm(zip(chunks, embeddings), total=len(chunks), desc="🗂 Indexation dans ChromaDB", unit="chunk")):
-        collection.add(
-            ids=[str(i)],  # ID unique pour chaque chunk
-            documents=[chunk],  # Texte original
-            embeddings=[embedding]  # Vecteur associé
-        )
-
-    print(f"✅ {len(chunks)} chunks indexés dans ChromaDB")
+    # Afficher les résultats
+    for i, (doc, score) in enumerate(zip(results["documents"][0], results["distances"][0])):
+        print(f"🔎 Résultat {i+1}: (Score: {score:.4f})\n{doc}\n{'-'*50}")

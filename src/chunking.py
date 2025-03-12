@@ -1,10 +1,10 @@
 import re
+from tqdm import tqdm  # Importer tqdm pour la barre de progression
 
 def split_text(text_list, chunk_size=500, chunk_overlap=50):
-
     all_chunks = []  # Liste pour stocker tous les chunks
 
-    for text in text_list:  # Parcourir chaque texte/document
+    for text in tqdm(text_list, desc="🔄 Découpage des textes", unit="doc"):  # Ajout de la barre de progression
         sentences = re.split(r'(?<=[.!?])\s+', text)  # Découpe en phrases
 
         chunks = []
@@ -16,7 +16,7 @@ def split_text(text_list, chunk_size=500, chunk_overlap=50):
             else: 
                 chunks.append(current_chunk.strip())  # Stocke le chunk
                 current_chunk = sentence + " "  # Démarre un nouveau chunk
-        
+
         if current_chunk:  # Ajoute le dernier chunk restant
             chunks.append(current_chunk.strip())
 
