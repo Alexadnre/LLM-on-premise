@@ -6,4 +6,4 @@ langchain-ollama
 docx2pdf
 tqdm
 python-dotenv
-
+streamlit
