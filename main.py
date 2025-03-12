@@ -5,8 +5,16 @@ from src.search_bdd import search
 
 
 
-texts = load_documents()
-chunks = split_text([doc.page_content for doc in texts], chunk_size=800, chunk_overlap=80)
-index_chunks(chunks)
+# texts = load_documents()
+# chunks = split_text([doc.page_content for doc in texts], chunk_size=800, chunk_overlap=80)
+# index_chunks(chunks)
 
-search("QUels sont mes congés en 2025 ?", top_k=3)
+
+print("Qui est le directeur de l'innovation ?")
+search("Qui est le directeur de l'innovation ?", top_k=3)
+
+print("Combien de salariés compte l'entreprise ?")
+search("Combien de salariés compte l'entreprise ?", top_k=3)
+
+print("Qui est maia ?")
+search("Qui est maia ?", top_k=3)

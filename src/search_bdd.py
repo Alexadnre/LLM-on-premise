@@ -29,3 +29,4 @@ def search(query, top_k=3):
     # Afficher les résultats
     for i, (doc, score) in enumerate(zip(results["documents"][0], results["distances"][0])):
         print(f"🔎 Résultat {i+1}: (Score: {score:.4f})\n{doc}\n{'-'*50}")
+
