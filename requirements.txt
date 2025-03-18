@@ -2,3 +2,5 @@ sentence-transformers  # Modèle pour générer des embeddings
 langchain_community  # Bibliothèque pour la gestion des chaînes de langage
 chromadb  # Base de données vectorielle pour stocker les embeddings
 pypdf  # Bibliothèque pour lire et manipuler les fichiers PDF
+tqdm
+python-dotenv
