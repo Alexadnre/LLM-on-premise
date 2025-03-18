@@ -2,8 +2,7 @@ from src.load_pdf import load_documents
 from src.chunking import split_text
 from src.index_on_chroma import index_chunks
 from src.search_bdd import search
-from src.bm25 import search_bm
-
+from src.interface import run_interface
 import chromadb
 import os
 from sentence_transformers import SentenceTransformer
@@ -18,6 +17,7 @@ CHROMA_DB_PATH = os.getenv("CHROMA_DB_PATH")  # Dossier pour stocker la base de 
 COLLECTION_NAME = os.getenv("COLLECTION_NAME")  # Nom de la collection ChromaDB
 BDC_PATH = os.getenv("BDC_PATH")
 NB_CONTEXT = os.getenv("NB_CONTEXT")
+
 embedding_model = SentenceTransformer(EMBEDDING_MODEL)
 print(EMBEDDING_MODEL)
 chroma_client = chromadb.PersistentClient(path=CHROMA_DB_PATH)  
@@ -33,9 +33,5 @@ chunks = split_text([doc.page_content for doc in texts], chunk_size=800, chunk_o
 index_chunks(chunks, collection, embedding_model)
 
 # Effectuer une recherche dans la base de données
-normal=search("Qui est le directeur de l'innovation", collection=collection, embedding_model=embedding_model, top_k=int(NB_CONTEXT))
-bm=search_bm("Quel est le directeur de l'innovation ?",chunks,int(NB_CONTEXT))
-# Crée une liste de dictionnaires JSON
-    # Chaque dictionnaire contient :
-    # - "document" : le texte du chunk
-    # - "score" : le score de pertinence
+run_interface(collection, embedding_model,chunks,NB_CONTEXT)
+
