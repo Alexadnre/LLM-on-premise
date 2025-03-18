@@ -2,6 +2,7 @@ from src.load_pdf import load_documents
 from src.chunking import split_text
 from src.index_on_chroma import index_chunks
 from src.search_bdd import search
+from src.bm25 import search_bm
 
 import chromadb
 import os
@@ -33,3 +34,6 @@ index_chunks(chunks, collection, embedding_model)
 
 # Effectuer une recherche dans la base de données
 search("Qui est le directeur de l'innovation", collection=collection, embedding_model=embedding_model, top_k=3)
+print('\n')
+print('\n')
+search_bm("Quel est le directeur de l'innovation ?",chunks,3)
