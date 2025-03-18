@@ -1,37 +1,14 @@
-import chromadb
-import ollama
-from dotenv import load_dotenv
 import os
-from tqdm import tqdm  # Importer tqdm pour la barre de progression
+from tqdm import tqdm
 
-# Charger les variables d'environnement
-load_dotenv()
-
-# 📌 Variables globales
-EMBEDDING_MODEL = os.getenv("EMBEDDING_MODEL", "all-minilm:l6-v2")  # Modèle d'embedding (par défaut DeepSeek)
-CHROMA_DB_PATH = os.getenv("CHROMA_DB_PATH", "src\db")  # Dossier pour stocker la base de données Chroma
-COLLECTION_NAME = os.getenv("COLLECTION_NAME", "bdc")  # Nom de la collection ChromaDB
-
-# Initialisation de ChromaDB
-chroma_client = chromadb.PersistentClient(path=CHROMA_DB_PATH)
-collection = chroma_client.get_or_create_collection(name=COLLECTION_NAME)
-
-def get_embedding(text):
-    """Génère un embedding à partir d'un texte en utilisant Ollama."""
-    response = ollama.embeddings(model=EMBEDDING_MODEL, prompt=text)
-    return response["embedding"]  # Retourne directement le vecteur d'embedding
-
-def index_chunks(chunks):
-    """Indexe les chunks de texte dans ChromaDB avec une barre de progression."""
+def index_chunks(chunks, collection, embedding_model):
+    """Indexe les chunks de texte dans ChromaDB."""
     
-    embeddings = []
+    # Convertir les chunks en embeddings
+    embeddings = embedding_model.encode(chunks).tolist()
     
-    # Générer les embeddings avec une barre de progression
-    for chunk in tqdm(chunks, desc="🔄 Génération des embeddings", unit="chunk"):
-        embeddings.append(get_embedding(chunk))
-
-    # Ajouter chaque chunk à la base ChromaDB avec une autre barre de progression
-    for i, (chunk, embedding) in enumerate(tqdm(zip(chunks, embeddings), total=len(chunks), desc="🗂 Indexation dans ChromaDB", unit="chunk")):
+    # Ajouter chaque chunk à la base ChromaDB
+    for i, (chunk, embedding) in enumerate(zip(chunks, embeddings)):
         collection.add(
             ids=[str(i)],  # ID unique pour chaque chunk
             documents=[chunk],  # Texte original
@@ -39,3 +16,4 @@ def index_chunks(chunks):
         )
 
     print(f"✅ {len(chunks)} chunks indexés dans ChromaDB")
+

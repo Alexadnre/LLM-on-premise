@@ -1,9 +1,3 @@
-numpy
-pdfplumber
-langchain
-langchain-community
-langchain-ollama
-docx2pdf
-tqdm
-python-dotenv
-streamlit
+sentence-transformers
+langchain_community
+chromadb
