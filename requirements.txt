@@ -4,3 +4,5 @@ chromadb  # Base de données vectorielle pour stocker les embeddings
 pypdf  # Bibliothèque pour lire et manipuler les fichiers PDF
 tqdm
 python-dotenv
+streamlit
+rank_bm25
