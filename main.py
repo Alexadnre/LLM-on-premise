@@ -27,10 +27,10 @@ collection = chroma_client.get_or_create_collection(name=COLLECTION_NAME)  # Cr√
 
 
 
-texts = load_documents(BDC_PATH, COLLECTION_NAME)
+texts = load_documents(BDC_PATH)
 chunks = split_text([doc.page_content for doc in texts], chunk_size=800, chunk_overlap=80)
 index_chunks(chunks, collection, embedding_model)
 
 
 
-search("Donne moi les cong√©s",collection=collection,embedding_model=embedding_model)
+search("Qui est le directeru de l'innovation",collection=collection,embedding_model=embedding_model,top_k=3)

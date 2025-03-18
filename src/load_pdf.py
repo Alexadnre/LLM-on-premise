@@ -1,10 +1,10 @@
 from langchain_community.document_loaders import PyPDFDirectoryLoader
 
-def load_documents(BDC_PATH, COLLECTION_NAME):
+def load_documents(BDC_PATH):
     
     documents = []
 
-    loader = PyPDFDirectoryLoader(COLLECTION_NAME)  # Charge tous les PDF d'un dossier
+    loader = PyPDFDirectoryLoader(BDC_PATH)  # Charge tous les PDF d'un dossier
     documents = loader.load()
 
     return documents
