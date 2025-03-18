@@ -1,11 +1,19 @@
 import chromadb
 from sentence_transformers import SentenceTransformer
 
+def search(query, collection, embedding_model, top_k=3):
+    """
+    Recherche les chunks les plus pertinents à partir d'une requête.
 
+    Args:
+        query (str): Requête utilisateur.
+        collection (chromadb.Collection): Collection ChromaDB où effectuer la recherche.
+        embedding_model (SentenceTransformer): Modèle utilisé pour générer l'embedding de la requête.
+        top_k (int): Nombre de résultats les plus pertinents à retourner.
 
-def search(query,collection,embedding_model,top_k=3):
-    """Recherche les chunks les plus pertinents à partir d'une requête."""
-    
+    Returns:
+        None
+    """
     query_embedding = embedding_model.encode([query]).tolist()  # Convertir la requête en vecteur
     results = collection.query(query_embeddings=query_embedding, n_results=top_k)
     

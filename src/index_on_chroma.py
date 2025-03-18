@@ -2,7 +2,17 @@ import os
 from tqdm import tqdm
 
 def index_chunks(chunks, collection, embedding_model):
-    """Indexe les chunks de texte dans ChromaDB."""
+    """
+    Indexe les chunks de texte dans ChromaDB.
+
+    Args:
+        chunks (list): Liste des chunks de texte à indexer.
+        collection (chromadb.Collection): Collection ChromaDB où les chunks seront ajoutés.
+        embedding_model (SentenceTransformer): Modèle utilisé pour générer les embeddings.
+
+    Returns:
+        None
+    """
     
     # Convertir les chunks en embeddings
     embeddings = embedding_model.encode(chunks).tolist()

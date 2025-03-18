@@ -22,12 +22,14 @@ print(EMBEDDING_MODEL)
 chroma_client = chromadb.PersistentClient(path=CHROMA_DB_PATH)  
 collection = chroma_client.get_or_create_collection(name=COLLECTION_NAME)  # Créer une collection
 
-
-
+# Charger les documents depuis le chemin spécifié
 texts = load_documents(BDC_PATH)
+
+# Découper les documents en chunks
 chunks = split_text([doc.page_content for doc in texts], chunk_size=800, chunk_overlap=80)
+
+# Indexer les chunks dans ChromaDB
 index_chunks(chunks, collection, embedding_model)
 
-
-
-search("Qui est le directeru de l'innovation",collection=collection,embedding_model=embedding_model,top_k=3)
+# Effectuer une recherche dans la base de données
+search("Qui est le directeur de l'innovation", collection=collection, embedding_model=embedding_model, top_k=3)
