@@ -33,7 +33,9 @@ chunks = split_text([doc.page_content for doc in texts], chunk_size=800, chunk_o
 index_chunks(chunks, collection, embedding_model)
 
 # Effectuer une recherche dans la base de données
-search("Qui est le directeur de l'innovation", collection=collection, embedding_model=embedding_model, top_k=NB_CONTEXT)
-print('\n')
-print('\n')
-search_bm("Quel est le directeur de l'innovation ?",chunks,NB_CONTEXT)
+normal=search("Qui est le directeur de l'innovation", collection=collection, embedding_model=embedding_model, top_k=int(NB_CONTEXT))
+bm=search_bm("Quel est le directeur de l'innovation ?",chunks,int(NB_CONTEXT))
+# Crée une liste de dictionnaires JSON
+    # Chaque dictionnaire contient :
+    # - "document" : le texte du chunk
+    # - "score" : le score de pertinence
