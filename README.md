@@ -1,124 +1,195 @@
-# 🚀 Projet RAG avec DeepSeek, Azure et LangChain
+# Projet E4 : LLM On Premise
 
-Ce projet implémente un **système RAG (Retrieval-Augmented Generation)** en connectant **DeepSeek** à une base de données sur **Azure** et en utilisant **LangChain** pour le traitement des documents.
+## Table des matières
+1. [Introduction](#1-introduction)
+   - [Contexte du projet](#11-contexte-du-projet)
+   - [Objectifs du projet](#12-objectifs-du-projet)
+   - [Enjeux et défis](#13-enjeux-et-défis)
+   
+2. [État de l'art et concepts théoriques](#état-de-lart-et-concepts-théoriques)
+   - [Les modèles LLM (Large Language Models)](#21-les-modèles-llm-large-language-models)
+   - [Introduction aux systèmes RAG](#22-introduction-aux-systèmes-rag)
+   - [Focus sur DeepSeek et ses atouts](#23-focus-sur-deepseek-et-ses-atouts)
+   - [Présentation de la technique d'embedding et de la base vectorielle (Chroma DB)](#24-présentation-de-la-technique-dembedding-et-de-la-base-vectorielle-chroma-db)
+   
+3. [Présentation du jeu de données](#présentation-du-jeu-de-données)
+   - [Nature des données fournies par l'entreprise](#31-nature-des-données-fournies-par-lentreprise)
+   
+4. [Méthodologie et architecture du projet](#méthodologie-et-architecture-du-projet)
+   - [Pipeline globale du projet](#41-pipeline-globale-du-projet)
+   - [Pré-traitement et ingestion des documents](#42-pré-traitement-et-ingestion-des-documents)
+   - [Génération et stockage des embeddings](#43-génération-et-stockage-des-embeddings)
+   - [Mise en place du moteur de recherche sémantique](#44-mise-en-place-du-moteur-de-recherche-sémantique)
+   - [Interaction avec DeepSeek pour la génération](#45-interaction-avec-deepseek-pour-la-génération)
+   
+5. [Implémentation technique](#implémentation-technique)
+   - [Technologies et bibliothèques utilisées](#51-technologies-et-bibliothèques-utilisées)
+   - [Structure des scripts et modules](#52-structure-des-scripts-et-modules)
+   - [Fonctionnement détaillé du système](#53-fonctionnement-détaillé-du-système)
+   - [Exemples de prompts et de réponses](#54-exemples-de-prompts-et-de-réponses)
+   
+6. [Résultats et analyses](#résultats-et-analyses)
+   - [Qualité des réponses](#61-qualité-des-réponses)
+   - [Performances](#62-performances)
+   - [Cas d'usage réussis](#63-cas-dusage-réussis)
+   - [Limites rencontrées](#64-limites-rencontrées)
+   
+7. [Améliorations possibles et perspectives](#améliorations-possibles-et-perspectives)
+   - [Améliorations techniques](#71-améliorations-techniques)
+   - [Intégration avec outils de l'entreprise](#72-intégration-avec-outils-de-lentreprise)
+   - [Perspectives d'évolution](#73-perspectives-dévolution)
+   
+8. [Conclusion](#conclusion)
+   - [Bilan du projet](#81-bilan-du-projet)
+   - [Enseignements tirés](#82-enseignements-tirés)
+   - [Conclusion générale et recommandations](#83-conclusion-générale-et-recommandations)
+   
+9. [Annexes](#annexes)
+   - [Code source simplifié](#91-code-source-simplifié)
+   - [Captures d'écran](#92-captures-decran)
+   - [Liste des documents traités](#93-liste-des-documents-traités)
+   - [Glossaire](#94-glossaire)
 
 ---
 
-# Sommaire
+## 1. Introduction
 
-- [Objectifs du projet](#📌-objectifs-du-projet)
-- [Technologies utilisées](#🛠️-technologies-utilisées)
-- [Structure du projet](#📂-structure-du-projet)
-- [Installation et Setup](#🚀-installation-et-setup)
-  - [Cloner le projet](#1️⃣-cloner-le-projet)
-  - [Créer un environnement virtuel et installer les dépendances](#2️⃣-créer-un-environnement-virtuel-et-installer-les-dépendances)
-  - [Installer et pull le modèle DeepSeek avec Ollama](#3️⃣-installer-et-pull-le-modèle-deepseek-with-ollama)
-  - [Lancer l'application](#4️⃣-lancer-lapplication)
-- [Fonctionnalités principales](#💡-fonctionnalités-principales)
-- [TODO](#📅-todo)
-- [Contribution](#🤝-contribution)
+### 1.1. Contexte du projet
+_Espace pour rédiger_
+
+### 1.2. Objectifs du projet
+- Mise en place d'un système RAG
+- Utilisation du modèle DeepSeek  
+_Espace pour rédiger_
+
+### 1.3. Enjeux et défis
+- Complexité des données internes
+- Attentes en termes de pertinence, fiabilité, rapidité des réponses
+- Respect de la confidentialité des données  
+_Espace pour rédiger_
 
 ---
-## 📌 Objectifs du projet
 
+## 2. État de l'art et concepts théoriques
 
+### 2.1. Les modèles LLM (Large Language Models)
+- Définition et évolution
+- Limites d'un LLM "simple"  
+_Espace pour rédiger_
 
-- Mettre en place une **interface utilisateur** avec **Streamlit**  
-- Déployer un **modèle DeepSeek local** pour répondre aux questions avec un contexte  
-- Stocker les documents traités dans une **base de données Azure**  
-- Préparer et **splitter les documents** avec **LangChain**  
-- **Vectoriser** les documents avec **OpenAI Embeddings / DeepSeek / GraphRAG**  
-- Implémenter une **retrieval function** efficace avec **LangChain**  
-- Tester et optimiser les paramètres (taille des splits, nombre d'extraits, etc.)  
-- Développer une **fonction de reward** pour affiner les réponses  
+### 2.2. Introduction aux systèmes RAG
+- Principe : combinaison retrieval + generation
+- Architecture générale : embeddings, base vectorielle, LLM  
+_Espace pour rédiger_
 
-## 🛠️ Technologies utilisées
+### 2.3. Focus sur DeepSeek et ses atouts
+- Particularités du modèle
+- Pourquoi le choix de DeepSeek pour ce projet ?  
+_Espace pour rédiger_
 
-| Outil / Techno  | Rôle |
-|-----------------|------|
-| **Python** | LangChain, DeepSeek, OpenAI, Neo4j, NetworkX, ArangoDB |
-| **Streamlit** | Interface utilisateur |
-| **Azure** | Base de données |
-| **LangChain** | Traitement et retrieval des documents |
-| **Git / GitHub** | Versionnement et collaboration |
+### 2.4. Présentation de la technique d'embedding et de la base vectorielle (Chroma DB)
+- Comment représenter des documents ?
+- Recherche de similarité  
+_Espace pour rédiger_
 
-## 📂 Structure du projet  
+---
 
-```
-📦 Projet
-├── 📂 static                # Documents base de connaissances
-├── 📂 notebooks           # Tests et prototypes
-├── 📂 src                 # Code source principal
-│   ├── main.py           # Lancement de l'application
-│   ├── ui.py             # Interface Streamlit
-│   ├── deepseek.py       # Configuration du modèle DeepSeek
-│   ├── db_setup.py       # Setup de la base Azure
-│   ├── document_split.py # Split des documents avec LangChain
-│   ├── vectorization.py  # Vectorisation des textes
-│   ├── retrieval.py      # Fonction de recherche (RAG)
-│   ├── reward.py         # Fonction de reward (ajustement auto)
-│   ├── config.py         # Configuration générale
-├── .gitignore            # Fichiers à ignorer pour Git
-├── requirements.txt      # Dépendances Python
-├── README.md             # Documentation du projet
-```
+## 3. Présentation du jeu de données
 
-## 🚀 Installation et Setup
+### 3.1. Nature des données fournies par l'entreprise
+- Type
+- Volume  
+_Espace pour rédiger_
 
-### 1️⃣ Cloner le projet
+---
 
-```bash
-git clone https://github.com/Alexadnre/LLM-on-premise
-cd Projet
-```
+## 4. Méthodologie et architecture du projet
 
-### 2️⃣ Créer un environnement virtuel et installer les dépendances  
+### 4.1. Pipeline globale du projet
+_Espace pour rédiger_
 
-```bash
-python -m venv venv
-source venv/bin/activate  # Windows: venv\Scripts\activate
-pip install -r requirements.txt
-```
+### 4.2. Pré-traitement et ingestion des documents
+_Espace pour rédiger_
 
-### 3️⃣ Installer et pull le modèle Deepseek with ollama
+### 4.3. Génération et stockage des embeddings
+_Espace pour rédiger_
 
-```bash
-ollama run deepseek-r1:8b
-```
+### 4.4. Mise en place du moteur de recherche sémantique
+_Espace pour rédiger_
 
-### 4️⃣ Lancer l'application
+### 4.5. Interaction avec DeepSeek pour la génération
+_Espace pour rédiger_
 
-```bash
-streamlit run src/main.py
-```
+---
 
-## 💡 Fonctionnalités principales  
+## 5. Implémentation technique
 
-✅ **Interface utilisateur avec Streamlit**  
-✅ **Base de données Azure** pour stocker les documents  
-✅ **DeepSeek local** pour répondre aux questions avec contexte  
-✅ **Préparation et split des documents** via **LangChain**  
-✅ **Vectorisation des documents** avec DeepSeek / GraphRAG  
-✅ **Retrieval intelligent** pour trouver les passages pertinents  
-✅ **Optimisation du modèle** en ajustant les paramètres  
-✅ **Fonction de reward** pour améliorer la pertinence des réponses  
+### 5.1. Technologies et bibliothèques utilisées
+_Espace pour rédiger_
 
-## 📅 TODO  
+### 5.2. Structure des scripts et modules
+_Espace pour rédiger_
 
-- [ ] Mettre en place l'interface utilisateur graphique avec Streamlit  
-- [ ] Télécharger et configurer DeepSeek  
-- [ ] Déployer la base de données sur Azure  
-- [ ] Implémenter la vectorisation des documents  
-- [ ] Tester différentes stratégies de split  
-- [ ] Ajuster la retrieval function pour améliorer la précision  
+### 5.3. Fonctionnement détaillé du système
+_Espace pour rédiger_
 
-## 🤝 Contribution
+### 5.4. Exemples de prompts et de réponses
+_Espace pour rédiger_
 
-Les contributions sont les bienvenues ! Si vous souhaitez contribuer :  
+---
 
-1. **Fork** le projet  
-2. **Créez une branche** pour votre fonctionnalité (`git checkout -b feature-nouvelle-fonction`)  
-3. **Committez** vos modifications (`git commit -m "Ajout d'une nouvelle fonctionnalité"`)  
-4. **Poussez** vers votre branche (`git push origin feature-nouvelle-fonction`)  
-5. **Ouvrez une Pull Request**  
-6. **Bravo**
+## 6. Résultats et analyses
+
+### 6.1. Qualité des réponses
+_Espace pour rédiger_
+
+### 6.2. Performances
+_Espace pour rédiger_
+
+### 6.3. Cas d'usage réussis
+_Espace pour rédiger_
+
+### 6.4. Limites rencontrées
+_Espace pour rédiger_
+
+---
+
+## 7. Améliorations possibles et perspectives
+
+### 7.1. Améliorations techniques
+_Espace pour rédiger_
+
+### 7.2. Intégration avec outils de l'entreprise
+_Espace pour rédiger_
+
+### 7.3. Perspectives d'évolution
+_Espace pour rédiger_
+
+---
+
+## 8. Conclusion
+
+### 8.1. Bilan du projet
+_Espace pour rédiger_
+
+### 8.2. Enseignements tirés
+_Espace pour rédiger_
+
+### 8.3. Conclusion générale et recommandations
+_Espace pour rédiger_
+
+---
+
+## 9. Annexes
+
+### 9.1. Code source simplifié
+_Espace pour rédiger_
+
+### 9.2. Captures d'écran
+_Espace pour rédiger_
+
+### 9.3. Liste des documents traités
+_Espace pour rédiger_
+
+### 9.4. Glossaire
+_Espace pour rédiger_
