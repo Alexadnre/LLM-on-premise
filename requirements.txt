@@ -6,3 +6,5 @@ tqdm
 python-dotenv
 streamlit
 rank_bm25
+chatollama
+langchain-ollama

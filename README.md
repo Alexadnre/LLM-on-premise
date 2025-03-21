@@ -68,21 +68,35 @@ Récupère le projet en clonant le dépôt Git avec la commande suivante :
 git clone https://github.com/Alexadnre/LLM-on-premise.git
 cd LLM-on-premise
 ```
+### 0.3 Création d'un environnement virtuel  
+Il est recommandé d'utiliser un environnement virtuel pour isoler les dépendances du projet.  
 
-### 0.3 Installation des dépendances  
+Crée un environnement virtuel et active-le avec les commandes suivantes :  
+
+#### **Sur Windows**  
+```sh
+python -m venv venv
+venv\\Scripts\\activate
+```
+#### **Sur macOS/Linux**
+```sh
+python3 -m venv venv
+source venv/bin/activate
+```
+
+### 0.4 Installation des dépendances  
 Installe les dépendances nécessaires en fonction de la technologie utilisée :  
-
-#### Pour un projet Python  
+ 
 ```sh
 pip install -r requirements.txt
 ```
 
 
-### 0.4 Configuration  
+### 0.5 Configuration  
 Si nécessaire, modifie le fichier `.env` et remplis le avec tes paramètres.
  
 
-### 0.5 Lancer le projet  
+### 0.6 Lancer le projet  
 Démarre l'application avec la commande :  
   
 ```sh
