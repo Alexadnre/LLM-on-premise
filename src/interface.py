@@ -17,7 +17,7 @@ def run_interface(collection,embedding_model,chunks,NB_CONTEXT):
     # Initialisation du modèle ChatOllama
     llm = ChatOllama(
         model="deepseek-llm",
-        device="cpu",  
+        device="gpu",  
         trust_remote_code=True,  # obligatoire pour les modèles HF
         max_new_tokens=128,
         top_k=10,
@@ -63,7 +63,7 @@ def run_interface(collection,embedding_model,chunks,NB_CONTEXT):
         deepseek_prompt = f"""
         Répond strictement à la question suivante en utilisant uniquement les informations présentes dans le contexte fourni. Aucune information externe ou spéculation n'est autorisée. Si le contexte ne permet pas de répondre de manière cohérente, indique clairement que la réponse ne peut être fournie : \n{context}
 
-        Question : \n{prompt}
+        Question : \n\n{prompt}
         """
 
 

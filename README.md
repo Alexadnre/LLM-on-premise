@@ -1,10 +1,13 @@
 # Projet E4 : LLM On Premise
 
 ## Table des matières
-1. [Introduction](#1-introduction)
-   - [Contexte du projet](#11-contexte-du-projet)
-   - [Objectifs du projet](#12-objectifs-du-projet)
-   - [Enjeux et défis](#13-enjeux-et-défis)
+   0. [Installation](#0-installation)
+
+
+   1. [Introduction](#1-introduction)
+      - [Contexte du projet](#11-contexte-du-projet)
+      - [Objectifs du projet](#12-objectifs-du-projet)
+      - [Enjeux et défis](#13-enjeux-et-défis)
    
 2. [État de l'art et concepts théoriques](#état-de-lart-et-concepts-théoriques)
    - [Les modèles LLM (Large Language Models)](#21-les-modèles-llm-large-language-models)
@@ -51,6 +54,45 @@
    - [Glossaire](#94-glossaire)
 
 ---
+## 0. Installation  
+
+### 0.1 Prérequis  
+Avant d’installer le projet, assure-toi d’avoir les outils suivants installés sur ton système :  
+- **Git** : [Télécharger Git](https://git-scm.com/downloads)  
+- **Python  3.13.2** : [Télécharger Python](https://www.python.org/downloads/)  
+
+### 0.2 Cloner le dépôt  
+Récupère le projet en clonant le dépôt Git avec la commande suivante :  
+
+```sh
+git clone https://github.com/Alexadnre/LLM-on-premise.git
+cd LLM-on-premise
+```
+
+### 0.3 Installation des dépendances  
+Installe les dépendances nécessaires en fonction de la technologie utilisée :  
+
+#### Pour un projet Python  
+```sh
+pip install -r requirements.txt
+```
+
+
+### 0.4 Configuration  
+Si nécessaire, modifie le fichier `.env` et remplis le avec tes paramètres.
+ 
+
+### 0.5 Lancer le projet  
+Démarre l'application avec la commande :  
+  
+```sh
+git checkout dev
+streamlit run main.py
+```
+
+Le chatbot est maintenant installé et prêt à être utilisé !
+
+
 
 ## 1. Introduction
 
