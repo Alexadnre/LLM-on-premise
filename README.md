@@ -225,16 +225,24 @@ Le volume de donnée variant selon l’utilisation faite du modèle par l’entr
 
 ### 4.1. Pipeline globale du projet
 
-
+[Créer dossier pour insérer image]
 
 ### 4.2. Pré-traitement et ingestion des documents
-_Espace pour rédiger_
+
+Afin de travailler sur les documents, il est nécessaire que ceux-ci soient tous au format pdf. On utilise pour la conversion la librairie subprocess. 
+Une fois le texte correctement converti et utilisable par le programme, on cherche à segmenter les différents documents en des chunks (des bouts du documents d’origine).
+Pour cette segmentation, on découpe en bout de 500 caractères, ce qui permet le plus souvent de correctement capturer le contexte de chaque passage du document tout en s’assurant que les extraits ne soient pas trop longs et ne compliquent pas le processus de recherche en ajoutant des informations parasites. De plus, on utilise un overlap (chevauchement) afin de s’assurer qu’on ne perd rien du contexte en coupant un extrait important au mauvais endroit. On s’assure par ailleurs de toujours couper en s’arrêtant à un point pour garantir qu’on finit toujours les phrases ce qui permet de conserver un maximum du contexte.
+
 
 ### 4.3. Génération et stockage des embeddings
-_Espace pour rédiger_
+
+Une fois les différents chunks créés, on les vectorise grâce à SentenceTransformer, puis on les stocke dans la base de donnée vectorielle créée avec ChromaDB.
 
 ### 4.4. Mise en place du moteur de recherche sémantique
-_Espace pour rédiger_
+
+Une fois cela fait, on procède à la recherche par similarité sémantique. On ne cherche pas ici à effectuer une recherche par mots-clés, mais bien à identifier quel document est pertinent vis-à-vis de la requête initiale en recherchant des liens sémantiques entre les termes utilisés dans la question et dans les documents.
+Plus précisément, la recherche par similarité consiste à comparer les vecteurs de la requête avec les vecteurs composant la base de donnée vectorielle. 
+
 
 ### 4.5. Interaction avec DeepSeek pour la génération
 _Espace pour rédiger_
