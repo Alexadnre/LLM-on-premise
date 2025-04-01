@@ -18,11 +18,11 @@ def run_interface(collection,embedding_model,chunks,NB_CONTEXT):
     llm = ChatOllama(
         model="deepseek-llm",
         device="gpu",  
-        trust_remote_code=True,  # obligatoire pour les modèles HF
-        max_new_tokens=128,
-        top_k=10,
-        top_p=0.95,
-        temperature=0.8,
+        trust_remote_code=True, 
+        max_new_tokens=200,
+        top_k=5,
+        top_p=0.85,
+        temperature=0.4, 
     )
 
     # Initialiser l'historique des messages
