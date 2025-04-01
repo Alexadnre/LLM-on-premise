@@ -28,14 +28,12 @@
 5. [Implémentation technique](#implémentation-technique)
    - [Technologies et bibliothèques utilisées](#51-technologies-et-bibliothèques-utilisées)
    - [Structure des scripts et modules](#52-structure-des-scripts-et-modules)
-   - [Fonctionnement détaillé du système](#53-fonctionnement-détaillé-du-système)
-   - [Exemples de prompts et de réponses](#54-exemples-de-prompts-et-de-réponses)
+   - [Exemples de prompts et de réponses](#53-exemples-de-prompts-et-de-réponses)
    
 6. [Résultats et analyses](#résultats-et-analyses)
    - [Qualité des réponses](#61-qualité-des-réponses)
    - [Performances](#62-performances)
-   - [Cas d'usage réussis](#63-cas-dusage-réussis)
-   - [Limites rencontrées](#64-limites-rencontrées)
+   - [Limites rencontrées](#63-limites-rencontrées)
    
 7. [Améliorations possibles et perspectives](#améliorations-possibles-et-perspectives)
    - [Améliorations techniques](#71-améliorations-techniques)
@@ -245,46 +243,174 @@ Plus précisément, la recherche par similarité consiste à comparer les vecteu
 
 
 ### 4.5. Interaction avec DeepSeek pour la génération
-_Espace pour rédiger_
+
+On utilise un prompt dans l'intéraction avec DeepSeek de manière à filtrer les réponses considérés dans le cadre du projet comme non pertinente, notamment celles qui ne répondent pas à la question en utilisant la base de connaissance ou celles qui manquent de précision soit en étant vague soit trop courte. On cherche à faire comprendre à deepseek que l'on cherche la réponse la plus complète possible tout en éliminant toute possibilité d'informations externes qui ne nous serviraient pas vraiment.
 
 ---
 
 ## 5. Implémentation technique
 
 ### 5.1. Technologies et bibliothèques utilisées
-_Espace pour rédiger_
+
+Dans le cadre de ce projet nous utilisons un certain nombre de technologies et de librairie externe, pour ce qui est des librairies utilisées :  
+
+Dans interface.py : 
+
+Streamlit : Utilisé dans le cadre de l’affichage de l’interface, permet à l’utilisateur d'interagir avec notre IA directement pour lui poser des questions 
+ChatOllama : Utilisé pour accéder au modèle DeepSeek, permet de le faire tourner localement.
+Sentence transformer : Permet la vectorisation des différents chunks
+ChromaDB : Permet de stocker les chunks vectorisés 
+dotenv et os : Permettent de load des variables directement depuis un fichier en .env.
+src.search_bdd : Permet d’effectuer la recherche sémantique à partir du modèle d’embeddings
+src.bm25 : Permet d’effectuer la recherche.
+
+Dans bm25.py : 
+
+rank_bm25 : Permet d’effectuer le ranking bm25
+
+Dans chunking.py :
+
+re : Permet de split les strings pour les chunks
+tqdm : Permet d’importer une barre de progression pour suivre le processus de chunking
+
+Dans load_pdf.py :
+
+langchain_community.document_loaders : Permet d’importer PyPDFDirectoryLoader pour importer les documents pdf.
+
+En termes de technologies, nous utilisons dans un premier temps DeepSeek, puis OpenAI, pour ce qui est du modèle LLM comme pour les embeddings.
+
 
 ### 5.2. Structure des scripts et modules
-_Espace pour rédiger_
+Dans le cadre de ce projet nous utilisons un certain nombre de technologies et de librairie externe, pour ce qui est des librairies utilisées :  
 
-### 5.3. Fonctionnement détaillé du système
-_Espace pour rédiger_
+Dans interface.py : 
 
-### 5.4. Exemples de prompts et de réponses
-_Espace pour rédiger_
+Streamlit : Utilisé dans le cadre de l’affichage de l’interface, permet à l’utilisateur d'interagir avec notre IA directement pour lui poser des questions 
+ChatOllama : Utilisé pour accéder au modèle DeepSeek, permet de le faire tourner localement.
+Sentence transformer : Permet la vectorisation des différents chunks
+ChromaDB : Permet de stocker les chunks vectorisés 
+dotenv et os : Permettent de load des variables directement depuis un fichier en .env.
+
+Dans bm25.py : 
+
+rank_bm25 : Permet d’effectuer le ranking bm25
+
+Dans chunking.py :
+
+re : Permet de split les strings pour les chunks
+tqdm : Permet d’importer une barre de progression pour suivre le processus de chunking
+
+Dans load_pdf.py :
+
+langchain_community.document_loaders : Permet d’importer PyPDFDirectoryLoader pour importer les documents pdf.
+
+En termes de technologies, nous utilisons dans un premier temps DeepSeek, puis OpenAI, pour ce qui est du modèle LLM comme pour les embeddings.
+
+
+
+Pour ce qui est du script principal à savoir main.py :
+
+Dans un premier temps la fonction main import les fonctions des différents autres programmes
+
+On load tous les éléments depuis le fichier env (que ce soit le modèle d’embedding, la database etc)
+
+(insérer loading)
+
+On procède alors au splitting et aux embeddings : 
+
+(insérer splitting et embedding)
+
+Puis on affiche l’interface pour l’utilisateur : 
+
+(insérer dernière ligne du code)
+
+On entre à présent plus dans le détail des différents scripts utilisés dans le main.
+
+Interface.py s’occupe d’afficher l’interface, on initialise dans un premier temps le modèle 
+
+(insérer initialisation Ollama)
+
+On récupère le message.
+
+(insérer récup message)
+
+Une fois le message récupéré on effectue une recherche sémantique et une recherche lexical via bm25 
+
+(insérer ce passage)
+
+Pour ce qui est de bm25.py, on effectue une simple recherche lexical dans les documents en effectuant un système de ranking pour trouver les chunks les plus pertinents 
+
+(insérer tout le code bm25)
+
+Pour ce qui est de search_bdd.py, on fait de même mais avec une recherche sémantique.
+
+(insérer tout le code de search_bdd)
+
+Dans le cas où aucun contexte valide n’est trouvé, on ne répond pas à la question, sinon on soumet le prompt au LLM qui tente de retrouver la réponse dans les documents en s’en servant puis on l’affiche.
+
+
+Pour ce qui est de load_pdf.py on utilise PyPDFDirectorLoader pour les load.
+
+(insérer load_pdf.py intégralement) 
+
+Pour ce qui est de chunking.py, on split les différents en pdf en plusieurs chunks en s’assurant de toujours s’arrêter sur une fin de phrase, on stock les chink au fur et à mesure jusqu’à avoir tout split. On applique un chevauchement entre les différents chunks pour s’assurer qu’on ne perde rien du contexte de chaque passage. 
+
+(insérer split_text intégralement)
+
+On utilise ensuite index_chunk pour stocker les chunks dans une base de données créée avec ChromaDB.
+
+(insérer index_on_chroma.py)
+
+
+### 5.3. Exemples de prompts et de réponses
+
+Certains résultats obtenus en utilisant le modèle OpenAI : 
+
+(insérer des résultats de réponse)
+
 
 ---
 
 ## 6. Résultats et analyses
 
 ### 6.1. Qualité des réponses
-_Espace pour rédiger_
+
+On constate que lorsque l’on utilise DeepSeek, les réponses ne sont pas très qualitatives, elles ne sont pas forcément très pertinentes, il répond parfois en utilisant des informations externes à la base de connaissance.
+(insérer exemple réponse pas ouf)
+
+(insérer exemple réponse pas lié à la bdc)
+
+(insérer réponse où il parle littéralement chinois (ça j’y crois moyen))
+
 
 ### 6.2. Performances
-_Espace pour rédiger_
 
-### 6.3. Cas d'usage réussis
-_Espace pour rédiger_
+ On constate un temps de réponse relativement élevé, néanmoins cela s’explique sans trop de problème par le fait que les modèles LLM consomment énormément de ressources, néanmoins cela est une nécessité puisqu’un modèle plus puissant permet une meilleure pertinence des résultats.
 
-### 6.4. Limites rencontrées
-_Espace pour rédiger_
+### 6.3. Limites rencontrées
+
+Dans un premier temps l’un des documents pdf nous a posés quelques soucis dans la mesure où il n’était pas adapté à l’utilisation qu’il en était fait par notre LLM dans la mesure où la mise en page du pdf en question présentait des caractères qui n’étaient pas correctement reconnus par le programme.
+
+(insérer erreur avec le pdf là)
+
+De plus, DeepSeek s’est finalement révélé peu fiable, étant souvent sujet à des “hallucinations”, répondant à côté même quand les réponses étaient trouvables dans la base de connaissance, ce qui n’est pas le cas de son homologue par OpenAI.
+
+De plus dans le cas où on ferait des recherches, même si un paragraphe contient l’information que l’on recherche, si un autre paragraphe moins pertinent comprend plus de fois le terme présenté dans la question, même si il n’y répond pas, il sera sélectionné, ce qui mène à des réponses bien moins pertinentes. C’est le problème de redondance.
+
 
 ---
 
 ## 7. Améliorations possibles et perspectives
 
 ### 7.1. Améliorations techniques
-_Espace pour rédiger_
+
+(A DEVELOPPER)
+
+Faire en sorte que l’IA reformule la requête de l’utilisateur pour qu’elle soit plus interprétable par le struct rag
+Utilisation d’un modèle plus performant (nécessité d’en tester un certain nombre)
+Changement de paramètres (température etc)
+Modification de l’interface pour la rendre plus user friendly
+
 
 ### 7.2. Intégration avec outils de l'entreprise
 _Espace pour rédiger_
