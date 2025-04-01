@@ -8,3 +8,4 @@ streamlit
 rank_bm25
 chatollama
 langchain-ollama
+openai

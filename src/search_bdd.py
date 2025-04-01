@@ -1,7 +1,7 @@
 import chromadb
 from sentence_transformers import SentenceTransformer
 
-def search(query, collection, embedding_model, top_k=3):
+def search(query, collection, embedding_model, top_k):
     """
     Recherche les chunks les plus pertinents à partir d'une requête.
 

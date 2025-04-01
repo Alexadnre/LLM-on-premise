@@ -1,5 +1,6 @@
 import streamlit as st
-from langchain_ollama import ChatOllama
+import openai
+from openai import AzureOpenAI
 import dotenv
 import os
 from src.search_bdd import search
@@ -10,20 +11,19 @@ from sentence_transformers import SentenceTransformer
 # Charger les variables d'environnement si nécessaire
 dotenv.load_dotenv()
 
-def run_interface(collection,embedding_model,chunks,NB_CONTEXT):
+def run_interface(collection,embedding_model,chunks,NB_CONTEXT,NB_RESULTS):
     st.title("Interface PROJET E4 Micropole")
     st.subheader("Saisissez votre requête ci-dessous.")
 
     # Initialisation du modèle ChatOllama
-    llm = ChatOllama(
-        model="deepseek-llm",
-        device="gpu",  
-        trust_remote_code=True,  # obligatoire pour les modèles HF
-        max_new_tokens=128,
-        top_k=10,
-        top_p=0.95,
-        temperature=0.8,
-    )
+    client = AzureOpenAI(
+        azure_endpoint = 'https://test-gpt4-mic.openai.azure.com', 
+        api_key='',  
+        api_version='2025-01-01-preview',
+        temperature = 0,
+        streaming = True
+        )
+    
 
     # Initialiser l'historique des messages
     if "messages" not in st.session_state:
@@ -57,7 +57,7 @@ def run_interface(collection,embedding_model,chunks,NB_CONTEXT):
             st.write("Aucun contexte trouvé pour répondre à la question.")
             return
         
-        context = context_semantic + "\n" + context_bm25
+        context = "Les 5 meilleurs resultats sémantique sont :" +context_semantic + "\n" +"et les 5 meilleurs résultats lexicaux sont"+ context_bm25
 
         # Préparer le prompt pour Deepseek
         deepseek_prompt = f"""
@@ -90,10 +90,17 @@ def run_interface(collection,embedding_model,chunks,NB_CONTEXT):
 
 
         # Obtenir la réponse du modèle
-        response = llm.invoke(deepseek_prompt).content.split('</think>')  # Assurez-vous que la chaîne 'think' existe
+        response = client.chat.completions.create(
+            model='gpt-4o-ESIEE',
+            max_tokens=600,
+            messages=[  
+                {"role": "system", "content": deepseek_prompt},
+            {"role": "user", "content": prompt}
+            ]
+        )
         print(response)
         # Afficher la réponse de l'assistant dans le container de message
         with st.chat_message("assistant"):
-            st.markdown(response[0])
+            st.markdown(response.choices[0].message.content)
         # Ajouter la réponse de l'assistant à l'historique des messages
         st.session_state.messages.append({"role": "assistant", "content": response})

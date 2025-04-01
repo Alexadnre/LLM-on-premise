@@ -111,138 +111,67 @@ Le chatbot est maintenant installé et prêt à être utilisé !
 ## 1. Introduction
 
 ### 1.1. Contexte du projet
-
-A une époque où les IA deviennent omniprésentes dans tous les projets en lien avec les technologies du numérique, les modèles de langages prennent de plus en plus de place et d’importance au sein de nombreuses entreprises, conscient de la pleine capacité de ces modèles pour résumer et récupérer des données. Bien que limité par leur incapacité à s’adapter à l’évolution des données puisqu’ils sont figés aux informations données lors de l'entraînement, ils représentent des outils puissants.
-
-Dans le but de répondre à cette problématique, une approche récente a émergé, le RAG (Retrieval-Augmented Generation). Cette méthode combine la génération des LLM à un moteur de recherche sémantique, permettant d’aller chercher efficacement et dynamiquement des informations dans une base de connaissance. Le modèle s’appuyant sur des données actualisées par l’entreprise, toujours à l’ordre du jour. 
-
-L’objectif est donc de développer une interface basée sur un LLM, capable d’interagir avec une base de données alimentée par les données de l’entreprise, et de procurer une réponse précise et rapide.
-
+_Espace pour rédiger_
 
 ### 1.2. Objectifs du projet
-
-- Mettre en place un système pour charger, découper et vectoriser les documents fournis par l’entreprise.
-- Mettre en place une base vectorielle sémantique pour indexer efficacement les données.
-- Interroger la base grâce au LLM.
-- Garantir l’obtention de réponses pertinentes et fiables.
-
+- Mise en place d'un système RAG
+- Utilisation du modèle DeepSeek  
+_Espace pour rédiger_
 
 ### 1.3. Enjeux et défis
-
-La mise en place de ce système permettrait à l’entreprise de : 
-- Faciliter l’accès à l’information au sein de celle-ci
-- Améliorer la productivité en réduisant le temps passé à chercher les informations
-- Optimiser la prise de décision
-- Anticiper la montée en puissance de l’IA dans tous les secteurs dans les prochaines années
-
+- Complexité des données internes
+- Attentes en termes de pertinence, fiabilité, rapidité des réponses
+- Respect de la confidentialité des données  
+_Espace pour rédiger_
 
 ---
 
 ## 2. État de l'art et concepts théoriques
 
 ### 2.1. Les modèles LLM (Large Language Models)
-
-Un LLM (Large Language Model) est un type de modèle d’intelligence artificielle basé sur un réseau de neurones. Il est conçu pour comprendre et manipuler le langage naturel.
-
-Pour se faire, on entraîne ces modèles sur de grandes quantités de données textuelles, permettant ainsi à celui-ci d’acquérir une bonne compréhension du texte et d’instaurer des liens entre les mots et les idées présentes dans les documents pour faire des recherches plus efficacement.
-
-Les tâches pouvant être réalisées par un LLM incluent par exemple : 
-
-- La génération de textes à partir d’une requête
--L’extraction d’informations pertinentes dans un document
-- Un dialogue fluide avec l’utilisateur
-
-Bien que très puissants, les modèles LLM ont plusieurs limites importantes quand non couplées à un RAG en parallèle : 
- 
-- Mémoire figée, les documents sont chargés pour l’entraînement de celui-ci mais le modèle ne se met pas au goût du jour, c’est le même principe que pour des IA comme ChatGPT, qui est incapable d’accèder à des informations plus vieilles que 2022
-- Hallucinations, terme utilisé pour décrire les réponses fausses ou inventées par l’IA, des textes qui paraissent plausibles mais qui ne sont pas nécessairement vrais pour autant. Cela est couplé par une absence de sourçage qui peut faire douter de la fiabilité des informations.
-
-On va s’intéresser plus précisément dans ce projet à la génération de texte et l’extraction d’informations depuis les documents.
-Les limites du LLM classiques seront contrebalancées par l’utilisation du RAG
-
+- Définition et évolution
+- Limites d'un LLM "simple"  
+_Espace pour rédiger_
 
 ### 2.2. Introduction aux systèmes RAG
-
-Un RAG (Retrieval-Augmented Generation) est une approche qui combine 2 choses : 
-
-- Génération d’un texte par un LLM
-- Recherche d’informations dans une base de données
-
-Le RAG vise à renforcer le modèle LLM en lui donnant accès à une base de données externe, pour fournir des réponses précises et vérifiables. 
-
-**Fonction du RAG :** 
-
-Recherche : Le moteur de recherche sémantique retrouve les documents contenant les passages les plus pertinents en rapport avec les informations demandées dans le prompt par l’utilisateur.
-Augmentation : Les documents sont fournis pour donner du contexte au modèle.
-- Génération : Le modèle génère une réponse en s’appuyant sur les informations trouvées, pour améliorer la précision de la réponse.
-
-Le RAG présente de multiples avantages, il fournit des réponses précises s’appuyant sur des informations correctement sourcées, il donne accès à des données à jour, réduit les hallucinations de l’IA, et permet le réentraînement du LLM en cas de modification des informations.
-
+- Principe : combinaison retrieval + generation
+- Architecture générale : embeddings, base vectorielle, LLM  
+_Espace pour rédiger_
 
 ### 2.3. Focus sur DeepSeek et ses atouts
-
-Nous utiliserons dans ce projet le modèle de langage LLM DeepSeek.
-
-Celui-ci est comparable à des modèles comme ChatGPT ou Mistral, mais se distingue néanmoins par des capacités avancées de compréhension et de raisonnement sur le langage naturel.
-Il est performant dans le traitement de requêtes complexes, et la manipulation de documents volumineux. 
-On s’en servira ici comme moteur LLM pour générer les réponses.
-DeepSeek est par ailleurs open-source, et offre un excellent compromis entre performance et coût d’utilisation, ce qui n’est pas nécessairement le cas d'autres LLM tels que ChatGPT-4 par exemple. Il exploite correctement les larges chunks de textes via le moteur de recherche sémantique (que nous exécuterons via Chroma).
-Le modèle génère des réponses synthétiques structurées et précises à partir des sources d’informations fournies.
-Fonctionnant directement avec Ollama, cela facilite son intégration locale sans avoir à passer par un cloud, ce qui favorise le développement et garantit une certaine confidentialité.
-
-Pour DeepSeek pour ce projet : 
-
-DeepSeek reçoit en entrée la question de l’utilisateur, il utilise alors un prompt en internet pour générer une réponse contextualisée en s’appuyant sur les documents qui lui ont été fournis au préalable. 
+- Particularités du modèle
+- Pourquoi le choix de DeepSeek pour ce projet ?  
+_Espace pour rédiger_
 
 ### 2.4. Présentation de la technique d'embedding et de la base vectorielle (Chroma DB)
-
-Dans le cadre de notre modèle, les différents documents de notre base de connaissances doivent être vectorisés afin d’optimiser le fonctionnement de celui-ci, cela se fait par la méthode d’embedding.
-
-L’embedding est le processus de numérisation des différents documents sous la forme de vecteur de haute dimension. On cherche ici à capturer la notion de relation sémantique entre les éléments, ce qui permet de faire en sorte que les éléments ayant des concepts relativement similaires aient leur vecteurs équivalents proches entre eux. 
-
-Dans le cadre des textes, l’embedding va transformer les différentes phrases en nombres réels.
-Pour donner un exemple concret, les pommes et bananes seraient relativement proches en tant que vecteurs puisque ce sont tous deux des fruits.
-
-Ce processus permet ainsi de trouver les informations les plus pertinentes dans la base de connaissances en utilisant les termes employés dans la question directement.
-
-Dans le cadre de notre projet nous utilisons la librairie SentenceTransformer, plus précisément l’embedding est effectué en utilisant le modèle : all-miniLM-L6-v2
-
-Tous ces vecteurs sont stockés dans une base de donnée vectorielle, on utilise ici Chroma DB.
+- Comment représenter des documents ?
+- Recherche de similarité  
+_Espace pour rédiger_
 
 ---
 
 ## 3. Présentation du jeu de données
 
 ### 3.1. Nature des données fournies par l'entreprise
-
-Dans le cadre de notre projet, l’on cherche à avoir un modèle qui peut marcher avec différents types de documents, cela se faisant par leur conversion en document pdf qui seraient ensuite traités.
-
-Le volume de donnée variant selon l’utilisation faite du modèle par l’entreprise, qui peut être amené à rajouter des documents au besoin, d’où l’utilité de l’utilisation d’un LLM comparé à un réseau de neurone classique qui ne peut être entraîné qu'une fois sur un set de données fixe.
+- Type
+- Volume  
+_Espace pour rédiger_
 
 ---
 
 ## 4. Méthodologie et architecture du projet
 
 ### 4.1. Pipeline globale du projet
-
-[Créer dossier pour insérer image]
+_Espace pour rédiger_
 
 ### 4.2. Pré-traitement et ingestion des documents
-
-Afin de travailler sur les documents, il est nécessaire que ceux-ci soient tous au format pdf. On utilise pour la conversion la librairie subprocess. 
-Une fois le texte correctement converti et utilisable par le programme, on cherche à segmenter les différents documents en des chunks (des bouts du documents d’origine).
-Pour cette segmentation, on découpe en bout de 500 caractères, ce qui permet le plus souvent de correctement capturer le contexte de chaque passage du document tout en s’assurant que les extraits ne soient pas trop longs et ne compliquent pas le processus de recherche en ajoutant des informations parasites. De plus, on utilise un overlap (chevauchement) afin de s’assurer qu’on ne perd rien du contexte en coupant un extrait important au mauvais endroit. On s’assure par ailleurs de toujours couper en s’arrêtant à un point pour garantir qu’on finit toujours les phrases ce qui permet de conserver un maximum du contexte.
-
+_Espace pour rédiger_
 
 ### 4.3. Génération et stockage des embeddings
-
-Une fois les différents chunks créés, on les vectorise grâce à SentenceTransformer, puis on les stocke dans la base de donnée vectorielle créée avec ChromaDB.
+_Espace pour rédiger_
 
 ### 4.4. Mise en place du moteur de recherche sémantique
-
-Une fois cela fait, on procède à la recherche par similarité sémantique. On ne cherche pas ici à effectuer une recherche par mots-clés, mais bien à identifier quel document est pertinent vis-à-vis de la requête initiale en recherchant des liens sémantiques entre les termes utilisés dans la question et dans les documents.
-Plus précisément, la recherche par similarité consiste à comparer les vecteurs de la requête avec les vecteurs composant la base de donnée vectorielle. 
-
+_Espace pour rédiger_
 
 ### 4.5. Interaction avec DeepSeek pour la génération
 _Espace pour rédiger_
