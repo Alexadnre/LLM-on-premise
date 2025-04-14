@@ -11,7 +11,7 @@ from sentence_transformers import SentenceTransformer
 # Charger les variables d'environnement si nécessaire
 dotenv.load_dotenv()
 
-def run_interface(collection,embedding_model,chunks,NB_CONTEXT,NB_RESULTS):
+def run_interface(collection,embedding_model,chunks,NB_CONTEXT):
     st.title("Interface PROJET E4 Micropole")
     st.subheader("Saisissez votre requête ci-dessous.")
 
@@ -19,9 +19,7 @@ def run_interface(collection,embedding_model,chunks,NB_CONTEXT,NB_RESULTS):
     client = AzureOpenAI(
         azure_endpoint = 'https://test-gpt4-mic.openai.azure.com', 
         api_key='',  
-        api_version='2025-01-01-preview',
-        temperature = 0,
-        streaming = True
+        api_version='2025-01-01-preview'
         )
     
 
@@ -93,14 +91,18 @@ def run_interface(collection,embedding_model,chunks,NB_CONTEXT,NB_RESULTS):
         response = client.chat.completions.create(
             model='gpt-4o-ESIEE',
             max_tokens=600,
+            temperature=0,      #PEUT ETRE A MODIF CAR RESULTATS VRMT PAS TERRIBLE
             messages=[  
                 {"role": "system", "content": deepseek_prompt},
             {"role": "user", "content": prompt}
             ]
         )
         print(response)
-        # Afficher la réponse de l'assistant dans le container de message
-        with st.chat_message("assistant"):
-            st.markdown(response.choices[0].message.content)
+        # Récupérer la réponse de l'assistant 
+        response_message = response.choices[0].message.content
         # Ajouter la réponse de l'assistant à l'historique des messages
-        st.session_state.messages.append({"role": "assistant", "content": response})
+        st.session_state.messages.append({"role": "assistant", "content": response_message})
+        #  Afficher la réponse de l'assistant dans le container de message
+        with st.chat_message("assistant"):
+            st.markdown(response_message)
+        
