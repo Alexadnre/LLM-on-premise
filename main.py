@@ -26,7 +26,7 @@ collection = chroma_client.get_or_create_collection(name=COLLECTION_NAME)  # Cr�
 # Charger les documents depuis le chemin spécifié
 texts = load_documents(BDC_PATH)
 
-# Découper les documents en chunks
+# Découper les documents en chunks*
 chunks = split_text([doc.page_content for doc in texts], chunk_size=800, chunk_overlap=80)
 
 # Indexer les chunks dans ChromaDB

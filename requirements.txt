@@ -1,4 +1,6 @@
 sentence-transformers  # Modèle pour générer des embeddings
+transformers==4.35.2
+
 langchain_community  # Bibliothèque pour la gestion des chaînes de langage
 chromadb  # Base de données vectorielle pour stocker les embeddings
 pypdf  # Bibliothèque pour lire et manipuler les fichiers PDF
@@ -8,3 +10,4 @@ streamlit
 rank_bm25
 chatollama
 langchain-ollama
+openpyxl
