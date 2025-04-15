@@ -37,19 +37,13 @@
    
 7. [Améliorations possibles et perspectives](#améliorations-possibles-et-perspectives)
    - [Améliorations techniques](#71-améliorations-techniques)
-   - [Intégration avec outils de l'entreprise](#72-intégration-avec-outils-de-lentreprise)
-   - [Perspectives d'évolution](#73-perspectives-dévolution)
+   - [Exploration d'une piste : OpenAI](#72-Exploration d'une piste : OpenAI)
+   - [Optimisation des paramètres](#73-Optimisation des paramètres)
    
 8. [Conclusion](#conclusion)
    - [Bilan du projet](#81-bilan-du-projet)
    - [Enseignements tirés](#82-enseignements-tirés)
    - [Conclusion générale et recommandations](#83-conclusion-générale-et-recommandations)
-   
-9. [Annexes](#annexes)
-   - [Code source simplifié](#91-code-source-simplifié)
-   - [Captures d'écran](#92-captures-decran)
-   - [Liste des documents traités](#93-liste-des-documents-traités)
-   - [Glossaire](#94-glossaire)
 
 ---
 ## 0. Installation  
@@ -410,12 +404,16 @@ Faire en sorte que l’IA reformule la requête de l’utilisateur pour qu’ell
 Utilisation d’un modèle plus performant (nécessité d’en tester un certain nombre)
 Changement de paramètres (température etc)
 Modification de l’interface pour la rendre plus user friendly
+Utilisation d'un modèle différent de DeepSeek, pour vérifier sa pertinence
 
 
-### 7.2. Intégration avec outils de l'entreprise
-_Espace pour rédiger_
+### 7.2. Exploration d'une piste : OpenAI
 
-### 7.3. Perspectives d'évolution
+Dans le cadre de notre travail, nous nous sommes rendus compte que DeepSeek avait parfois des résultats décevants, ou même incorrects, nous avons donc décidés de nous intéresser à l'utilisation d'un autre modèle, celui d'OpenAI.
+On observe des (en fait je sais pas quoi écrire faudrait que quelqu'un qui était spécifiquement sur cette partie du projet le fasse)
+
+
+### 7.3. Optimisation des paramètres
 _Espace pour rédiger_
 
 ---
@@ -433,16 +431,3 @@ _Espace pour rédiger_
 
 ---
 
-## 9. Annexes
-
-### 9.1. Code source simplifié
-_Espace pour rédiger_
-
-### 9.2. Captures d'écran
-_Espace pour rédiger_
-
-### 9.3. Liste des documents traités
-_Espace pour rédiger_
-
-### 9.4. Glossaire
-_Espace pour rédiger_
