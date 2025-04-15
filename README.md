@@ -37,8 +37,8 @@
    
 7. [Améliorations possibles et perspectives](#améliorations-possibles-et-perspectives)
    - [Améliorations techniques](#71-améliorations-techniques)
-   - [Exploration d'une piste : OpenAI](#72-Exploration d'une piste : OpenAI)
-   - [Optimisation des paramètres](#73-Optimisation des paramètres)
+   - [Exploration d'une piste : OpenAI](#71-exploration-d'une-piste:openai)
+   - [Optimisation des paramètres](#73-pptimisation-des-paramètres)
    
 8. [Conclusion](#conclusion)
    - [Bilan du projet](#81-bilan-du-projet)
