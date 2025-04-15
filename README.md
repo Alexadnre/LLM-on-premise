@@ -300,8 +300,6 @@ langchain_community.document_loaders : Permet d’importer PyPDFDirectoryLoader 
 
 En termes de technologies, nous utilisons dans un premier temps DeepSeek, puis OpenAI, pour ce qui est du modèle LLM comme pour les embeddings.
 
-
-
 Pour ce qui est du script principal à savoir main.py :
 
 Dans un premier temps la fonction main import les fonctions des différents autres programmes
@@ -314,9 +312,7 @@ On procède alors au splitting et aux embeddings :
 
 (insérer splitting et embedding)
 
-Puis on affiche l’interface pour l’utilisateur : 
-
-(insérer dernière ligne du code)
+Puis on affiche l’interface pour l’utilisateur.
 
 On entre à présent plus dans le détail des différents scripts utilisés dans le main.
 
@@ -342,7 +338,6 @@ Pour ce qui est de search_bdd.py, on fait de même mais avec une recherche séma
 
 Dans le cas où aucun contexte valide n’est trouvé, on ne répond pas à la question, sinon on soumet le prompt au LLM qui tente de retrouver la réponse dans les documents en s’en servant puis on l’affiche.
 
-
 Pour ce qui est de load_pdf.py on utilise PyPDFDirectorLoader pour les load.
 
 (insérer load_pdf.py intégralement) 
@@ -355,13 +350,11 @@ On utilise ensuite index_chunk pour stocker les chunks dans une base de données
 
 (insérer index_on_chroma.py)
 
-
 ### 5.3. Exemples de prompts et de réponses
 
-Certains résultats obtenus en utilisant le modèle OpenAI : 
+Certains résultats obtenus en utilisant le modèle DeepSeek : 
 
 (insérer des résultats de réponse)
-
 
 ---
 
