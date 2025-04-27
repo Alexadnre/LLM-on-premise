@@ -41,7 +41,7 @@ Tester différentes combinaisons de paramètres (temperature, top_k, top_p, max_
 ### Commande
 Vérifie que tu es sur la bonne branche :
 ```bash
-git checkout DevDeepSeekTuning
+git checkout opti-param-deepseek
 ```
 
 Puis lance les tests :
