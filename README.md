@@ -2,6 +2,7 @@
 
 ## Sommaire
 - [Installation](#installation)
+- [Utilisation avec Azure OpenAI](#utilisation-avec-azure-openai)
 - [Introduction](#introduction)
 
 ---
@@ -46,17 +47,46 @@ pip install -r requirements.txt
 ```
 
 ### Configuration
-Si nécessaire, modifie le fichier `.env` pour configurer tes paramètres personnels.
+Modifie le fichier `.env` pour ajouter tes informations personnelles :
+- `AZURE_OPENAI_ENDPOINT` : URL de ton endpoint Azure.
+- `AZURE_OPENAI_API_KEY` : Clé d'API fournie par Azure.
+
+Exemple de structure de `.env` :
+```env
+AZURE_OPENAI_ENDPOINT=https://votre-endpoint.openai.azure.com/
+AZURE_OPENAI_API_KEY=votre-cle-api
+```
 
 ### Lancer le projet
-Démarre l'application :
+Démarre l'application avec :
 
 ```bash
 git checkout DevOpenAi
 streamlit run main.py
 ```
 
-Le chatbot est maintenant installé et prêt à être utilisé !
+Le chatbot utilisant Azure OpenAI est maintenant installé et prêt à être utilisé !
+
+---
+
+## Utilisation avec Azure OpenAI
+
+Dans cette version, l'application utilise le modèle OpenAI déployé sur Azure pour générer les réponses.
+
+Le modèle est initialisé comme suit :
+```python
+client = AzureOpenAI(
+    azure_endpoint='https://votre-endpoint.openai.azure.com/',
+    api_key='votre-cle-api',
+    api_version='2025-01-01-preview',
+    temperature=0,
+    streaming=True
+)
+```
+
+**Important** :
+- Assure-toi que ton modèle OpenAI est correctement déployé sur ton instance Azure.
+- Utilise la version d'API `2025-01-01-preview` ou ajuste selon tes besoins.
 
 ---
 
