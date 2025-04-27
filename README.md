@@ -52,7 +52,7 @@ Si nécessaire, modifie le fichier `.env` pour configurer tes paramètres person
 Démarre l'application :
 
 ```bash
-git checkout dev
+git checkout DevOpenAi
 streamlit run main.py
 ```
 
