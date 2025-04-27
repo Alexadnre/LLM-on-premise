@@ -17,8 +17,8 @@ def run_interface(collection,embedding_model,chunks,NB_CONTEXT,NB_RESULTS):
 
     # Initialisation du modèle ChatOllama
     client = AzureOpenAI(
-        azure_endpoint = 'https://test-gpt4-mic.openai.azure.com', 
-        api_key='',  
+        azure_endpoint = os.getenv("AZURE_OPENAI_ENDPOINT"),
+        api_key=os.getenv("AZURE_OPENAI_API_KEY"),
         api_version='2025-01-01-preview',
         temperature = 0,
         streaming = True
