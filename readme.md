@@ -46,7 +46,7 @@ git checkout opti-param-deepseek
 
 Puis lance les tests :
 ```bash
-streamlit run run_experiments.py
+python run_experiments.py
 ```
 
 ### Fonctionnement
@@ -65,7 +65,7 @@ Noter automatiquement chaque réponse générée sur 100 selon sa pertinence, cl
 ### Commande
 Depuis la racine du projet :
 ```bash
-streamlit run add_auto_scores_to_excel.py
+python add_auto_scores_to_excel.py
 ```
 
 ### Fonctionnement
