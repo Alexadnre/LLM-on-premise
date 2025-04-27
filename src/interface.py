@@ -19,10 +19,10 @@ def run_interface(collection,embedding_model,chunks,NB_CONTEXT):
         model="deepseek-llm",
         device="gpu",  
         trust_remote_code=True, 
-        max_new_tokens=200,
-        top_k=5,
+        max_new_tokens=300         ,
+        top_k=20          ,
         top_p=0.85,
-        temperature=0.4, 
+        temperature=0.3, 
     )
 
     # Initialiser l'historique des messages
